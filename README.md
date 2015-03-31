@@ -64,8 +64,8 @@ A description of the attributes is as follows:
 | :-------------------------|:-------------|:-----|
 | _completionMessage        | object       | This is an object describing the output feedback |
 | _bands                    | object array | This is an array containing bands of feedback starting at _score |
-| _retry                    | object       | This is an object allow a retry button to be enabled for the user to retry the assessment (_isReloadPageOnRevisit must be *true* on the assessment) |
-| _assessmentId             | string       | This is a unique name for the assessment for which results should be displayed |
+| _retry                    | object       | This is an object enabling a retry button for the user to retry the assessment (_isReloadPageOnRevisit must be *true* on the assessment) |
+| _assessmentId             | string       | This is the unique name of the assessment for which results should be displayed |
 
 
 The {{{attributes}}} available for string replacement are defined in the [assessment extension](https://github.com/adaptlearning/adapt-contrib-assessment) with the addition of the {{{feedback}}} attribute.

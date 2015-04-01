@@ -25,34 +25,30 @@ A component used to display a single assessment's results. It can only be used i
     },
     "_assessmentId": "Assessment 1",
     "_retry": {
-      "_isEnabled": true,
       "button": "Retry Assessment",
       "feedback": "Why not have another try? You have used {{attemptsSpent}} of {{attempts}} attempt(s), which means you have {{attemptsLeft}} attempt(s) remaining."
     },
-    "_completionMessage" : {
-      "title" : "You have finished the assessment",
-      "message": "You scored {{{score}}} out of {{{maxScore}}}. {{{feedback}}}"
-    },
+    "_completionBody": "This component you're reading is a results component.<br>You have finished the assessment<br/>You scored {{{score}}} out of {{{maxScore}}}. {{{feedback}}}",
     "_bands": [
       {
         "_score": 0,
         "feedback": "Your score was below 25%.",
-        "_isRetryEnabled": true
+        "_allowRetry": true
       },
       {
         "_score": 25,
         "feedback": "Your score was below 50%.",
-        "_isRetryEnabled": true
+        "_allowRetry": true
       },
       {
         "_score": 50,
         "feedback": "Good effort, but your score was under 75%.",
-        "_isRetryEnabled": true
+        "_allowRetry": true
       },
       {
         "_score": 75,
         "feedback": "Great work. You passed your assessment with {{{scoreAsPercent}}}%.",
-        "_isRetryEnabled": false
+        "_allowRetry": false
       }
     ]
   },
@@ -62,9 +58,9 @@ A description of the attributes is as follows:
 
 | Attribute                 | Type         | Description|
 | :-------------------------|:-------------|:-----|
-| _completionMessage        | object       | This is an object describing the output feedback |
+| _completionBody           | string       | This is a string describing the component's body on assessment completion |
 | _bands                    | object array | This is an array containing bands of feedback starting at _score |
-| _retry                    | object       | This is an object enabling a retry button for the user to retry the assessment (_isReloadPageOnRevisit must be *true* on the assessment) |
+| _retry                    | object       | This is an object enabling a retry button for the user to retry the assessment. |
 | _assessmentId             | string       | This is the unique name of the assessment for which results should be displayed |
 
 

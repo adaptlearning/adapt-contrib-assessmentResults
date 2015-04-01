@@ -84,7 +84,7 @@ define(function(require) {
 
         setFeedback: function() {
 
-            var completionMessage = this.model.get("_completionMessage").message;
+            var completionBody = this.model.get("_completionBody");
             var feedbackBand = this.getFeedbackBand();
 
             var state = this.model.get("_state");
@@ -93,9 +93,9 @@ define(function(require) {
 
             this.checkRetryEnabled();
 
-            completionMessage = this.stringReplace(completionMessage, state);
+            completionBody = this.stringReplace(completionBody, state);
 
-            this.model.set("completionMessage", completionMessage);
+            this.model.set("body", completionBody);
 
         },
 
@@ -120,8 +120,7 @@ define(function(require) {
             var assessmentModel = Adapt.assessment.get(state.id);
             if (!assessmentModel.canResetInPage()) return false;
 
-            var isRetryEnabled = state.feedbackBand._isRetryEnabled !== false && 
-                                 (this.model.get("_retry") && this.model.get("_retry")._isEnabled !== false); 
+            var isRetryEnabled = state.feedbackBand._isRetryEnabled !== false;
 
             var isAttemptsLeft = (state.attempts === 0 || state.attemptsLeft);
 

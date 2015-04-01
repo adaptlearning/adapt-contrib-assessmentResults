@@ -120,7 +120,7 @@ define(function(require) {
             var assessmentModel = Adapt.assessment.get(state.id);
             if (!assessmentModel.canResetInPage()) return false;
 
-            var isRetryEnabled = state.feedbackBand._isRetryEnabled !== false;
+            var isRetryEnabled = state.feedbackBand._allowRetry !== false;
 
             var isAttemptsLeft = (state.attempts === 0 || state.attemptsLeft);
 

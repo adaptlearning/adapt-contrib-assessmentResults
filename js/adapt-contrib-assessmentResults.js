@@ -5,8 +5,8 @@
 */
 define(function(require) {
 
-	var ComponentView = require('coreViews/componentView');
-	var Adapt = require('coreJS/adapt');
+    var ComponentView = require('coreViews/componentView');
+    var Adapt = require('coreJS/adapt');
 
     var AssessmentResults = ComponentView.extend({
 
@@ -19,6 +19,20 @@ define(function(require) {
             this.setupEventListeners();
 
             this.model.set('_isVisible', false);
+        
+            this.setupModelResetEvent();
+            
+        },
+
+        setupModelResetEvent: function() {
+            if (this.model.onAssessmentsReset) return;
+            this.model.onAssessmentsReset = function(state) {
+                if (this.get("_assessmentId") === undefined || 
+                    this.get("_assessmentId") != state.id) return;
+
+                this.reset('hard', true);
+            };
+            this.model.listenTo(Adapt, 'assessments:reset', this.model.onAssessmentsReset);
         },
 
         postRender: function() {
@@ -27,13 +41,11 @@ define(function(require) {
 
         setupEventListeners: function() {
             this.listenTo(Adapt, 'assessments:complete', this.onAssessmentsComplete);
-
             this.listenToOnce(Adapt, 'remove', this.onRemove);
         },
 
         removeEventListeners: function() {;
             this.stopListening(Adapt, 'assessments:complete', this.onAssessmentsComplete);
-
             this.stopListening(Adapt, 'remove', this.onRemove);
         },
 

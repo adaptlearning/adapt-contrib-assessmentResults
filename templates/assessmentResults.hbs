@@ -1,0 +1,15 @@
+<div class="results-inner component-inner">
+    {{> component this}}
+    <div class="results-widget component-widget">
+        {{#if _isRetryEnabled}}
+        <div class="results-retry component-feedback">
+            <div class="results-retry-inner component-feedback-inner">
+                {{{a11y_text retryFeedback}}}
+            </div>
+            <div class="results-retry-button">
+                <button>{{#if _retry._button}}{{_retry.button}}{{else}}Retry{{/if}}</button>
+            </div>
+        </div>
+        {{/if}}
+    </div>
+</div>

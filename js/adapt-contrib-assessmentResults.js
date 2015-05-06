@@ -11,7 +11,7 @@ define(function(require) {
     var AssessmentResults = ComponentView.extend({
 
         events: {
-            'inview .component-body': 'onInview',
+            'inview': 'onInview',
             'click .results-retry-button button': 'onRetry'
         },
 
@@ -83,6 +83,7 @@ define(function(require) {
                 
                 if (this._isVisibleTop || this._isVisibleBottom) {
                     this.setCompletionStatus();
+                    this.$el.off("inview");
                 }
             }
         },

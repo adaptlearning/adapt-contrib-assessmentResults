@@ -17,11 +17,29 @@ define(function(require) {
 
         preRender: function () {
             this.setupEventListeners();
-
-            this.model.set('_isVisible', false);
-        
             this.setupModelResetEvent();
-            
+            this.checkIfVisible();
+        },
+
+        checkIfVisible: function() {
+
+            var wasVisible = this.model.get("_isVisible");
+            var isVisibleBeforeCompletion = this.model.get("_isVisibleBeforeCompletion") || false;
+
+            var isVisible = wasVisible && isVisibleBeforeCompletion;
+
+            if (!isVisibleBeforeCompletion) {
+
+                var assessmentModel = Adapt.assessment.get(this.model.get("_assessmentId"));
+                if (!assessmentModel || assessmentModel.length === 0) return;
+
+                var isComplete = assessmentModel.get("_isComplete");
+
+                isVisible = isVisible || isComplete;
+
+            }
+
+            this.model.set('_isVisible', isVisible);
         },
 
         setupModelResetEvent: function() {
@@ -57,8 +75,9 @@ define(function(require) {
             this.setFeedback();
 
             //show feedback component
-            if(!this.model.get('_isVisible')) this.model.set('_isVisible', true, {pluginName: '_results'});
             this.render();
+            if(!this.model.get('_isVisible')) this.model.set('_isVisible', true);
+            
         },
 
         onAssessmentComplete: function(state) {
@@ -66,7 +85,7 @@ define(function(require) {
             this.setFeedback();
 
              //show feedback component
-            if(!this.model.get('_isVisible')) this.model.set('_isVisible', true, {pluginName: '_results'});
+            if(!this.model.get('_isVisible')) this.model.set('_isVisible', true);
             this.render();
         },
 

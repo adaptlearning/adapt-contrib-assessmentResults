@@ -10,6 +10,7 @@
     "displayTitle":"Results",
     "body":"This component you're reading is a results component.",
     "instruction":"",
+    "_isVisibleBeforeCompletion": true,
     "_pageLevelProgress": {
       "_isEnabled": true
     },

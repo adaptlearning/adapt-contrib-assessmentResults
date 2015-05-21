@@ -1,6 +1,6 @@
 {
   "name": "adapt-contrib-assessmentResults",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "description": "A component used to display the assessment results.",
   "main": "/js/adapt-contrib-assessmentResults.js",
   "repository": {

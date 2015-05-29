@@ -34,8 +34,10 @@ define(function(require) {
                 if (!assessmentModel || assessmentModel.length === 0) return;
 
                 var isComplete = assessmentModel.get("_isComplete");
-
-                isVisible = isVisible || isComplete;
+                var isAttemptInProgress = assessmentModel.get("_attemptInProgress");
+                var attemptsSpent = assessmentModel.get("_attemptsSpent");
+                
+                isVisible = isVisible || isComplete || (!isAttemptInProgress && attemptsSpent > 0);
 
             }
 

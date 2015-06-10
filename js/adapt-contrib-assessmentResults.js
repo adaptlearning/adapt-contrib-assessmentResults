@@ -155,8 +155,7 @@ define(function(require) {
             if (!assessmentModel.canResetInPage()) return false;
 
             var isRetryEnabled = state.feedbackBand._allowRetry !== false;
-
-            var isAttemptsLeft = (state.attempts === 0 || state.attemptsLeft);
+            var isAttemptsLeft = (state.attempts > 0 || state.attemptsLeft === "infinite");
 
             var showRetry = isRetryEnabled && isAttemptsLeft;
             this.model.set("_isRetryEnabled", showRetry);

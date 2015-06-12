@@ -18,6 +18,7 @@ define(function(require) {
         preRender: function () {
             this.setupEventListeners();
             this.setupModelResetEvent();
+            this.checkIfComplete();
             this.checkIfVisible();
         },
 
@@ -33,15 +34,27 @@ define(function(require) {
                 var assessmentModel = Adapt.assessment.get(this.model.get("_assessmentId"));
                 if (!assessmentModel || assessmentModel.length === 0) return;
 
-                var isComplete = assessmentModel.get("_isComplete");
-                var isAttemptInProgress = assessmentModel.get("_attemptInProgress");
-                var attemptsSpent = assessmentModel.get("_attemptsSpent");
+                var state = assessmentModel.getState();
+                var isComplete = state.isComplete;
+                var isAttemptInProgress = state.attemptInProgress;
+                var attemptsSpent = state.attemptsSpent;
                 
                 isVisible = isVisible || isComplete || (!isAttemptInProgress && attemptsSpent > 0);
 
             }
 
             this.model.set('_isVisible', isVisible);
+        },
+
+        checkIfComplete: function() {
+            var assessmentModel = Adapt.assessment.get(this.model.get("_assessmentId"));
+            if (!assessmentModel || assessmentModel.length === 0) return;
+
+            var state = assessmentModel.getState();
+            var isComplete = state.isComplete;
+            if (isComplete) {
+                this.onAssessmentsComplete(state);
+            }
         },
 
         setupModelResetEvent: function() {

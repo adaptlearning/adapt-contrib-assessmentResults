@@ -54,6 +54,8 @@ define(function(require) {
             var isComplete = state.isComplete;
             if (isComplete) {
                 this.onAssessmentsComplete(state);
+            } else {
+                this.model.reset('hard', true);
             }
         },
 

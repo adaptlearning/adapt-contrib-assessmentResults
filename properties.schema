@@ -46,7 +46,7 @@
           "type": "string",
           "required": false,
           "default": "Retry Assessment",
-          "Title": "Retry Button Text",
+          "title": "Retry Button Text",
           "inputType": "Text",
           "validators": []
         },
@@ -54,7 +54,7 @@
           "type": "string",
           "required": false,
           "default": "",
-          "Title": "Retry Text",
+          "title": "Retry Text",
           "inputType": "Text",
           "validators": [],
           "help": "This text is displayed only when more attempts remain. You can use the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}."
@@ -65,7 +65,7 @@
       "type": "string",
       "required": false,
       "default": "",
-      "Title": "Feedback Text",
+      "title": "Feedback Text",
       "inputType": "Text",
       "validators": [],
       "help": "This text overwrites the standard body attribute upon completion of the assessment. It may make use of the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}. {{{feedback}}}, representing the feedback assigned to the appropriate band, is also allowed."

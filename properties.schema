@@ -32,7 +32,7 @@
       "type": "string",
       "required": true,
       "default": "",
-      "Title": "Assessment",
+      "title": "Assessment",
       "inputType": "Text",
       "validators": ["required"],
       "help": "This is the unique name of the assessment for which results should be displayed"

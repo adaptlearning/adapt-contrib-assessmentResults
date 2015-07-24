@@ -31,7 +31,7 @@
     "_assessmentId": {
       "type": "string",
       "required": true,
-      "default": "Assessment ID",
+      "default": "",
       "Title": "Assessment",
       "inputType": "Text",
       "validators": ["required"],

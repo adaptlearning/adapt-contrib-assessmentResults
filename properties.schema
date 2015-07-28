@@ -2,113 +2,104 @@
   "type":"object",
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
-  "required":false,
+  "$ref": "http://localhost/plugins/content/component/model.schema",
   "properties":{
-    "pluginLocations": {
+    "_supportedLayout": {
+      "type": "string",
+      "required": true,
+      "enum": ["full-width", "half-width", "both"],
+      "default": "both",
+      "editorOnly": true
+    },
+    "instruction": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "inputType": "Text",
+      "validators": [],
+      "help": "This is the instruction text"
+    },
+    "_isVisibleBeforeCompletion": {
+      "type":"boolean",
+      "required":true,
+      "default": true,
+      "title": "Show before assessment completion",
+      "inputType": {"type": "Boolean", "options": [true, false]},
+      "validators": [],
+      "help": "If set to 'false', this will be hidden until the assessment is completed."
+    },
+    "_assessmentId": {
+      "type": "string",
+      "required": true,
+      "default": "",
+      "title": "Assessment",
+      "inputType": "Text",
+      "validators": ["required"],
+      "help": "This is the unique name of the assessment for which results should be displayed"
+    },
+    "_retry": {
       "type":"object",
       "required":true,
+      "title": "",
       "properties":{
-        "config": {
-          "type":"object"
+        "button": {
+          "type": "string",
+          "required": false,
+          "default": "Retry Assessment",
+          "title": "Retry Button Text",
+          "inputType": "Text",
+          "validators": []
         },
-        "course": {
-          "type":"object"
-        },
-        "contentobject": {
-          "type":"object"
-        },
-        "article": {
-          "type":"object",
-          "properties":{
-            "_assessment": {
-              "type":"object",
-              "required":false,
-              "legend": "Assessment",
-              "properties":{
-                "_isEnabled": {
-                  "type":"boolean",
-                  "required":true,
-                  "title": "Enabled",
-                  "inputType": { "type": "Boolean", "options": [false, true]},
-                  "validators": []
-                },
-                "_isPercentageBased": {
-                  "type":"boolean",
-                  "required":true,
-                  "title": "Percentage based",
-                  "inputType": { "type": "Boolean", "options": [false, true]},
-                  "validators": []
-                },
-                "_scoreToPass": {
-                  "type":"number",
-                  "required":false,
-                  "title": "Pass mark",
-                  "inputType": "Number",
-                  "default": 60,
-                  "validators": ["number", "required"]
-                },
-                "_bands": {
-                  "type":"array",
-                  "required":false,
-                  "title": "Feedback bands",
-                  "items": {
-                    "type":"object",
-                    "required":false,
-                    "title": "Items",
-                    "properties":{
-                      "_score": {
-                        "type":"number",
-                        "required":true,
-                        "title": "Score",
-                        "minLength": 1,
-                        "default": "",
-                        "inputType": "Number",
-                        "validators": ["required", "number"]
-                      },
-                      "feedback": {
-                        "type":"string",
-                        "required":true,
-                        "title": "Feedback",
-                        "minLength": 1,
-                        "default": "",
-                        "inputType": "TextArea",
-                        "validators": ["required"]
-                      }
-                    }
-                  }
-                },
-                "_completionMessage": {
-                  "type":"object",
-                  "required":false,
-                  "legend": "Completion Message",
-                  "properties":{
-                    "message": {
-                      "type":"string",
-                      "required":false,
-                      "title": "Message",
-                      "default": "",
-                      "inputType": "TextArea",
-                      "validators": []
-                    },
-                    "title": {
-                      "type":"string",
-                      "required":false,
-                      "default": "",
-                      "title": "Completion title",
-                      "inputType": "Text",
-                      "validators": []
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "block": {
-          "type":"object"
-        },
-        "component": {
-          "type":"object"
+        "feedback": {
+          "type": "string",
+          "required": false,
+          "default": "",
+          "title": "Retry Text",
+          "inputType": "Text",
+          "validators": [],
+          "help": "This text is displayed only when more attempts remain. You can use the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}."
+        }
+      }
+    },
+    "_completionBody": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "title": "Feedback Text",
+      "inputType": "Text",
+      "validators": [],
+      "help": "This text overwrites the standard body attribute upon completion of the assessment. It may make use of the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}. {{{feedback}}}, representing the feedback assigned to the appropriate band, is also allowed."
+    },
+    "_bands": {
+      "type":"array",
+      "required":true,
+      "title": "Bands",
+      "items": {
+        "type":"object",
+        "required":true,
+        "properties":{
+          "_score": {
+            "type":"number",
+            "required":false,
+            "title": "Score",
+            "inputType": "Number",
+            "validators": ["number"],
+            "help": "Enter a value representing the raw score or percentage for the start of the range"
+          },
+          "feedback": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "inputType": "Text",
+            "validators": []
+          },
+          "_allowRetry": {
+            "type":"boolean",
+            "required":true,
+            "default": true,
+            "title": "Allow Retry",
+            "inputType": {"type": "Boolean", "options": [true, false]},
+            "validators": []          }
         }
       }
     }

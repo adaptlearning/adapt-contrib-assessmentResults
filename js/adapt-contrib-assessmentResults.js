@@ -11,6 +11,8 @@ define(function(require) {
         },
 
         preRender: function () {
+            if (this.model.setLocking) this.model.setLocking("_isVisible", false);
+
             this.setupEventListeners();
             this.setupModelResetEvent();
             this.checkIfComplete();
@@ -19,10 +21,10 @@ define(function(require) {
 
         checkIfVisible: function() {
 
-            var wasVisible = this.model.get("_isVisible");
             var isVisibleBeforeCompletion = this.model.get("_isVisibleBeforeCompletion") || false;
+            var isVisible = false;
 
-            var isVisible = wasVisible && isVisibleBeforeCompletion;
+            var wasVisible = this.model.get("_isVisible");
 
             if (!isVisibleBeforeCompletion) {
 
@@ -33,12 +35,15 @@ define(function(require) {
                 var isComplete = state.isComplete;
                 var isAttemptInProgress = state.attemptInProgress;
                 var attemptsSpent = state.attemptsSpent;
+                var hasHadAttempt = (!isAttemptInProgress && attemptsSpent > 0);
                 
-                isVisible = isVisible || isComplete || (!isAttemptInProgress && attemptsSpent > 0);
+                isVisible = (isVisibleBeforeCompletion && !isComplete) || hasHadAttempt;
 
             }
 
-            this.model.set('_isVisible', isVisible);
+            if (!wasVisible && isVisible) isVisible = false;
+
+            this.model.set('_isVisible', isVisible, {pluginName: "assessmentResults"});
         },
 
         checkIfComplete: function() {
@@ -88,7 +93,7 @@ define(function(require) {
 
             //show feedback component
             this.render();
-            if(!this.model.get('_isVisible')) this.model.set('_isVisible', true);
+            if(!this.model.get('_isVisible')) this.model.set('_isVisible', true, {pluginName: "assessmentResults"});
             
         },
 
@@ -97,7 +102,7 @@ define(function(require) {
             this.setFeedback();
 
              //show feedback component
-            if(!this.model.get('_isVisible')) this.model.set('_isVisible', true);
+            if(!this.model.get('_isVisible')) this.model.set('_isVisible', true, {pluginName: "assessmentResults"});
             this.render();
         },
 
@@ -216,6 +221,8 @@ define(function(require) {
         },
 
         onRemove: function() {
+            if (this.model.unsetLocking) this.model.unsetLocking("_isVisible");
+
             this.removeEventListeners();
         }
         

@@ -151,11 +151,10 @@ define(function(require) {
         getFeedbackBand: function() {
             var state = this.model.get("_state");
 
-            var bands = this.model.get("_bands");
-            var scoreAsPercent = state.scoreAsPercent;
+            var bands = _.sortBy(this.model.get("_bands"), '_score');
             
             for (var i = (bands.length - 1); i >= 0; i--) {
-                if (scoreAsPercent >= bands[i]._score) {
+                if (state.scoreAsPercent >= bands[i]._score) {
                     return bands[i];
                 }
             }

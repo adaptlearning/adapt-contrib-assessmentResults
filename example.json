@@ -39,7 +39,8 @@
       {
         "_score": 75,
         "feedback": "Great work. You passed your assessment with {{{scoreAsPercent}}}%.",
-        "_allowRetry": false
+        "_allowRetry": false,
+		"_classes": "high-score"
       }
     ]
   },

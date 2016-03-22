@@ -99,7 +99,16 @@
             "default": true,
             "title": "Allow Retry",
             "inputType": {"type": "Boolean", "options": [true, false]},
-            "validators": []          }
+            "validators": []          
+	  },
+	  "_classes": {
+	    "type": "string",
+            "required": false,
+            "default": "",
+            "inputType": "Text",
+            "validators": [],
+	    "help": "Classes to be applied to the containing article; allows for custom styling based on the band the user's score falls into."
+          }
         }
       }
     }

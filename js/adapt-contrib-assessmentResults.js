@@ -89,7 +89,12 @@ define(function(require) {
                 this.model.get("_assessmentId") != state.id) return;
 
             this.model.set("_state", state);
-            this.setFeedback();
+            
+            var feedbackBand = this.getFeedbackBand();
+            
+            this.setFeedback(feedbackBand);
+            
+            this.addClassesToArticle(feedbackBand);
 
             //show feedback component
             this.render();
@@ -99,7 +104,12 @@ define(function(require) {
 
         onAssessmentComplete: function(state) {
             this.model.set("_state", state);
-            this.setFeedback();
+            
+            var feedbackBand = this.getFeedbackBand(feedbackBand);
+            
+            this.setFeedback(feedbackBand);
+            
+            this.addClassesToArticle(feedbackBand);
 
              //show feedback component
             if(!this.model.get('_isVisible')) this.model.set('_isVisible', true, {pluginName: "assessmentResults"});
@@ -131,10 +141,9 @@ define(function(require) {
             assessmentModel.reset();
         },
 
-        setFeedback: function() {
+        setFeedback: function(feedbackBand) {
 
             var completionBody = this.model.get("_completionBody");
-            var feedbackBand = this.getFeedbackBand();
 
             var state = this.model.get("_state");
             state.feedbackBand = feedbackBand;
@@ -146,6 +155,17 @@ define(function(require) {
 
             this.model.set("body", completionBody);
 
+        },
+        
+        /**
+         * If there are classes specified for the feedback band, apply them to the containing article
+         * This allows for custom styling based on the band the user's score falls into
+         */
+        addClassesToArticle: function(feedbackBand) {
+            
+            if(!feedbackBand.hasOwnProperty('_classes')) return;
+            
+            this.$el.parents('.article').addClass(feedbackBand._classes);
         },
 
         getFeedbackBand: function() {

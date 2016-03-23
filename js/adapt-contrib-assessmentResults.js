@@ -96,10 +96,9 @@ define(function(require) {
             
             this.addClassesToArticle(feedbackBand);
 
-            //show feedback component
             this.render();
-            if(!this.model.get('_isVisible')) this.model.set('_isVisible', true, {pluginName: "assessmentResults"});
             
+            this.show();
         },
 
         onAssessmentComplete: function(state) {
@@ -111,9 +110,9 @@ define(function(require) {
             
             this.addClassesToArticle(feedbackBand);
 
-             //show feedback component
-            if(!this.model.get('_isVisible')) this.model.set('_isVisible', true, {pluginName: "assessmentResults"});
             this.render();
+            
+            this.show();
         },
 
         onInview: function(event, visible, visiblePartX, visiblePartY) {
@@ -139,6 +138,12 @@ define(function(require) {
             var assessmentModel = Adapt.assessment.get(state.id);
 
             assessmentModel.reset();
+        },
+        
+        show: function() {
+             if(!this.model.get('_isVisible')) {
+                 this.model.set('_isVisible', true, {pluginName: "assessmentResults"});
+             }
         },
 
         setFeedback: function(feedbackBand) {

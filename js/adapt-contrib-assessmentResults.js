@@ -105,7 +105,7 @@ define(function(require) {
         onAssessmentComplete: function(state) {
             this.model.set("_state", state);
             
-            var feedbackBand = this.getFeedbackBand(feedbackBand);
+            var feedbackBand = this.getFeedbackBand();
             
             this.setFeedback(feedbackBand);
             

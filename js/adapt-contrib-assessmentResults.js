@@ -37,7 +37,7 @@ define(function(require) {
                 var attemptsSpent = state.attemptsSpent;
                 var hasHadAttempt = (!isAttemptInProgress && attemptsSpent > 0);
                 
-                isVisible = (isVisibleBeforeCompletion && !isComplete) || hasHadAttempt;
+                isVisible = hasHadAttempt;
 
             }
 

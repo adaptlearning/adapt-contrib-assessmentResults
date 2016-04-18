@@ -13,10 +13,20 @@ define(function(require) {
         preRender: function () {
             if (this.model.setLocking) this.model.setLocking("_isVisible", false);
 
+            this.saveOriginalTexts();
+
             this.setupEventListeners();
             this.setupModelResetEvent();
             this.checkIfComplete();
             this.checkIfVisible();
+        },
+
+        saveOriginalTexts: function() {
+            this.model.set({
+                "originalTitle": this.model.get("title"),
+                "originalBody": this.model.get("body"),
+                "originalInstruction": this.model.get("instruction")
+            });
         },
 
         checkIfVisible: function() {
@@ -26,20 +36,16 @@ define(function(require) {
 
             var wasVisible = this.model.get("_isVisible");
 
-            if (!isVisibleBeforeCompletion) {
+            var assessmentModel = Adapt.assessment.get(this.model.get("_assessmentId"));
+            if (!assessmentModel || assessmentModel.length === 0) return;
 
-                var assessmentModel = Adapt.assessment.get(this.model.get("_assessmentId"));
-                if (!assessmentModel || assessmentModel.length === 0) return;
-
-                var state = assessmentModel.getState();
-                var isComplete = state.isComplete;
-                var isAttemptInProgress = state.attemptInProgress;
-                var attemptsSpent = state.attemptsSpent;
-                var hasHadAttempt = (!isAttemptInProgress && attemptsSpent > 0);
-                
-                isVisible = (isVisibleBeforeCompletion && !isComplete) || hasHadAttempt;
-
-            }
+            var state = assessmentModel.getState();
+            var isComplete = state.isComplete;
+            var isAttemptInProgress = state.attemptInProgress;
+            var attemptsSpent = state.attemptsSpent;
+            var hasHadAttempt = (!isAttemptInProgress && attemptsSpent > 0);
+            
+            isVisible = (isVisibleBeforeCompletion && !isComplete) || hasHadAttempt;
 
             if (!wasVisible && isVisible) isVisible = false;
 
@@ -137,7 +143,17 @@ define(function(require) {
             var state = this.model.get("_state");
             var assessmentModel = Adapt.assessment.get(state.id);
 
+            this.restoreOriginalTexts();
+
             assessmentModel.reset();
+        },
+
+        restoreOriginalTexts: function() {
+            this.model.set({
+                "title": this.model.get("originalTitle"),
+                "body": this.model.get("originalBody"),
+                "instruction": this.model.get("originalInstruction")
+            });
         },
         
         show: function() {

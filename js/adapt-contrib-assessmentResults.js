@@ -35,6 +35,10 @@ define(function(require) {
             var isVisible = false;
 
             var wasVisible = this.model.get("_isVisible");
+            
+            if (this.model.get("_assessmentId") === "") {
+                return false; 
+            }            
 
             var assessmentModel = Adapt.assessment.get(this.model.get("_assessmentId"));
             if (!assessmentModel || assessmentModel.length === 0) return;
@@ -53,6 +57,9 @@ define(function(require) {
         },
 
         checkIfComplete: function() {
+            if (this.model.get("_assessmentId") === "") {
+                return false; 
+            }
             var assessmentModel = Adapt.assessment.get(this.model.get("_assessmentId"));
             if (!assessmentModel || assessmentModel.length === 0) return;
 

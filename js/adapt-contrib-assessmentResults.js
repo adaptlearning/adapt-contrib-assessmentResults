@@ -30,6 +30,10 @@ define(function(require) {
         },
 
         checkIfVisible: function() {
+            
+            if (!Adapt.assessment) {
+                return false;
+            }
 
             var isVisibleBeforeCompletion = this.model.get("_isVisibleBeforeCompletion") || false;
             var isVisible = false;
@@ -53,6 +57,11 @@ define(function(require) {
         },
 
         checkIfComplete: function() {
+            
+            if (!Adapt.assessment) {
+                return false;
+            }
+
             var assessmentModel = Adapt.assessment.get(this.model.get("_assessmentId"));
             if (!assessmentModel || assessmentModel.length === 0) return;
 

@@ -17,7 +17,8 @@
       "default": "",
       "inputType": "Text",
       "validators": [],
-      "help": "This is the instruction text"
+      "help": "This is the instruction text",
+      "translatable": true
     },
     "_isVisibleBeforeCompletion": {
       "type":"boolean",
@@ -48,7 +49,8 @@
           "default": "Retry Assessment",
           "title": "Retry Button Text",
           "inputType": "Text",
-          "validators": []
+          "validators": [],
+          "translatable": true
         },
         "feedback": {
           "type": "string",
@@ -57,7 +59,8 @@
           "title": "Retry Text",
           "inputType": "Text",
           "validators": [],
-          "help": "This text is displayed only when more attempts remain. You can use the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}."
+          "help": "This text is displayed only when more attempts remain. You can use the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}.",
+          "translatable": true
         }
       }
     },
@@ -68,7 +71,8 @@
       "title": "Feedback Text",
       "inputType": "Text",
       "validators": [],
-      "help": "This text overwrites the standard body attribute upon completion of the assessment. It may make use of the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}. {{{feedback}}}, representing the feedback assigned to the appropriate band, is also allowed."
+      "help": "This text overwrites the standard body attribute upon completion of the assessment. It may make use of the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}. {{{feedback}}}, representing the feedback assigned to the appropriate band, is also allowed.",
+      "translatable": true
     },
     "_bands": {
       "type":"array",
@@ -91,7 +95,8 @@
             "required": false,
             "default": "",
             "inputType": "Text",
-            "validators": []
+            "validators": [],
+            "translatable": true
           },
           "_allowRetry": {
             "type":"boolean",
@@ -99,7 +104,7 @@
             "default": true,
             "title": "Allow Retry",
             "inputType": {"type": "Boolean", "options": [true, false]},
-            "validators": []          
+            "validators": []
 	  },
 	  "_classes": {
 	    "type": "string",
@@ -107,7 +112,7 @@
             "default": "",
             "inputType": "Text",
             "validators": [],
-	    "help": "Classes to be applied to the containing article; allows for custom styling based on the band the user's score falls into."
+	        "help": "Classes to be applied to the containing article; allows for custom styling based on the band the user's score falls into."
           }
         }
       }

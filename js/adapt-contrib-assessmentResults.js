@@ -200,11 +200,11 @@ define(function(require) {
 
         getFeedbackBand: function() {
             var state = this.model.get("_state");
-
+            var scoreProp = state.isPercentageBased ? 'scoreAsPercent' : 'score';
             var bands = _.sortBy(this.model.get("_bands"), '_score');
             
             for (var i = (bands.length - 1); i >= 0; i--) {
-                if (state.scoreAsPercent >= bands[i]._score) {
+                if (state[scoreProp] >= bands[i]._score) {
                     return bands[i];
                 }
             }

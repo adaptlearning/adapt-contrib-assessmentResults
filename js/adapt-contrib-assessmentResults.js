@@ -275,8 +275,11 @@ define(function(require) {
             this.removeEventListeners();
         }
         
+    }, {
+        template: 'assessmentResults'
     });
     
     Adapt.register("assessmentResults", AssessmentResults);
     
+    return AssessmentResults;
 });

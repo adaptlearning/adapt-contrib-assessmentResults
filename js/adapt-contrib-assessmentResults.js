@@ -94,7 +94,7 @@ define(function(require) {
             this.listenToOnce(Adapt, 'remove', this.onRemove);
         },
 
-        removeEventListeners: function() {;
+        removeEventListeners: function() {
             this.stopListening(Adapt, 'assessments:complete', this.onAssessmentsComplete);
             this.stopListening(Adapt, 'remove', this.onRemove);
         },

@@ -37,7 +37,7 @@ The attributes listed below are used in *components.json* to configure **Assessm
 
 **_component** (string): This value must be: `assessmentResults`. (One word with uppercase "R".)
 
-**_classes** (string): CSS class name to be applied to **Assessment Results**’ containing `div`. The class must be predefined in one of the Less files. Separate multiple classes with a space.
+**_classes** (string): CSS class name(s) to be applied to **Assessment Results**’ containing `div`. The class(es) must be predefined in one of the Less files. Separate multiple classes with a space.
 
 **_layout** (string): This defines the horizontal position of the component in the block. Values can be `full`, `left` or `right`.  
 
@@ -52,9 +52,9 @@ guide the learner’s interaction with the component.
 
 >**button** (string): Text that appears on the retry button.
 
->**feedback** (string): This text is displayed only when both **_allowRetry** is `true` and more attempts remain ([configured in adapt-contrib-assessment](https://github.com/adaptlearning/adapt-contrib-assessment#attributes)). It may make use of the following variables: `{{attemptsSpent}}`, `{{attempts}}`, `{{attemptsLeft}}`, `{{{score}}}`, `{{{maxScore}}}`. These values are populated with data supplied by [adapt-contrib-assessment](https://github.com/adaptlearning/adapt-contrib-assessment#attributes). `{{{feedback}}}`, representing the feedback assigned to the appropriate band within this component, is also allowed.  
+>**feedback** (string): This text is displayed only when both **_allowRetry** is `true` and more attempts remain ([configured in adapt-contrib-assessment](https://github.com/adaptlearning/adapt-contrib-assessment#attributes)). It may make use of the following variables: `{{attemptsSpent}}`, `{{attempts}}`, `{{attemptsLeft}}`, `{{score}}`, `{{scoreAsPercent}}` and `{{maxScore}}`. These values are populated with data supplied by [adapt-contrib-assessment](https://github.com/adaptlearning/adapt-contrib-assessment#attributes). `{{{feedback}}}`, representing the feedback assigned to the appropriate band within this component, is also allowed.  
   
-**_completionBody** (string): This text overwrites the standard **body** attribute upon completion of the assessment. It may make use of the following variables: `{{attemptsSpent}}`, `{{attempts}}`, `{{attemptsLeft}}`, `{{{score}}}`, `{{{maxScore}}}`. The variable `{{{feedback}}}`, representing the feedback assigned to the appropriate band, is also allowed.  
+**_completionBody** (string): This text overwrites the standard **body** attribute upon completion of the assessment. It may make use of the following variables: `{{attemptsSpent}}`, `{{attempts}}`, `{{attemptsLeft}}`, `{{score}}`, `{{scoreAsPercent}}` and `{{maxScore}}`. The variable `{{{feedback}}}`, representing the feedback assigned to the appropriate band, is also allowed.  
 
 **_bands** (object array): Multiple items may be created. Each item represents the feedback and opportunity to retry for the appropriate range of scores. **_bands** contains values for **_score**, **feedback**, **_allowRetry** and **_classes**.
 
@@ -77,6 +77,8 @@ In the image to the right, numbers are paired with the text's source attributes 
 4. _retry.button  
 
 [Visit the **Usage and Tips** page of the wiki](https://github.com/adaptlearning/adapt-contrib-assessmentResults/wiki/Usage-and-Tips) for more information about configuring **Assessment Results**.
+
+For a guide on the difference between using two curly braces and three curly braces when working with the variables that are available in this component, see [the HTML escaping section of the the Handlebars website](http://handlebarsjs.com/#html-escaping)
 
 ## Limitations
  

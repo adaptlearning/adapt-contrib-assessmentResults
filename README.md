@@ -29,6 +29,8 @@ With the [Adapt CLI](https://github.com/adaptlearning/adapt-cli) installed, run 
 
 ## Settings Overview
 
+**Important note: do not put the Assessment Results component in the same article as the assessment itself**.
+
 The attributes listed below are used in *components.json* to configure **Assessment Results**, and are properly formatted as JSON in [*example.json*](https://github.com/adaptlearning/adapt-contrib-assessmentResults/blob/master/example.json). Visit the [**Assessment Results** wiki](https://github.com/adaptlearning/adapt-contrib-assessmentResults/wiki) for more information about how they appear in the [authoring tool](https://github.com/adaptlearning/adapt_authoring/wiki). 
 
 ### Attributes

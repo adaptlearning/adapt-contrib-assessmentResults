@@ -1,7 +1,7 @@
-define(function(require) {
-
-    var ComponentView = require('coreViews/componentView');
-    var Adapt = require('coreJS/adapt');
+define([
+    'core/js/adapt',
+    'core/js/views/componentView'
+], function(Adapt, ComponentView) {
 
     var AssessmentResults = ComponentView.extend({
 
@@ -16,8 +16,11 @@ define(function(require) {
             this.saveOriginalTexts();
 
             this.setupEventListeners();
+
             this.setupModelResetEvent();
+
             this.checkIfComplete();
+
             this.checkIfVisible();
         },
 
@@ -66,8 +69,7 @@ define(function(require) {
             if (!assessmentModel || assessmentModel.length === 0) return;
 
             var state = assessmentModel.getState();
-            var isComplete = state.isComplete;
-            if (isComplete) {
+            if (state.isComplete) {
                 this.onAssessmentsComplete(state);
             } else {
                 this.model.reset('hard', true);
@@ -172,9 +174,9 @@ define(function(require) {
         },
         
         show: function() {
-             if(!this.model.get('_isVisible')) {
-                 this.model.set('_isVisible', true, {pluginName: "assessmentResults"});
-             }
+            if(!this.model.get('_isVisible')) {
+                this.model.set('_isVisible', true, {pluginName: "assessmentResults"});
+            }
         },
 
         setFeedback: function(feedbackBand) {
@@ -251,11 +253,11 @@ define(function(require) {
                     var contextValue = context[k];
 
                     switch (typeof contextValue) {
-                    case "object":
-                        continue;
-                    case "number":
-                        contextValue = Math.floor(contextValue);
-                        break;
+                        case "object":
+                            continue;
+                        case "number":
+                            contextValue = Math.floor(contextValue);
+                            break;
                     }
 
                     var regExNoEscaping = new RegExp("((\\{\\{\\{){1}[\\ ]*"+k+"[\\ ]*(\\}\\}\\}){1})","g");

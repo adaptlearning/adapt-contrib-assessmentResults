@@ -145,10 +145,9 @@ define([
                 
                 if (this._isVisibleTop || this._isVisibleBottom) {
                     this.setCompletionStatus();
-                    /*
-                     Sometimes (with mobile and virtual keyboards) inview can be triggered but the component is not _visible = true, so it does not get marked
-                     complete. Delay the unbinding of the inview listener until component is actually complete
-                    */
+                    // Sometimes (with mobile and virtual keyboards) inview can be triggered
+                    // but the component is not _visible = true, so it does not get marked
+                    // complete. Delay the unbinding of the inview listener until complete
                     if (this.model.get('_isComplete')) {
                         this.$el.off("inview");
                     }

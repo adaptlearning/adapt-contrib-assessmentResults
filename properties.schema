@@ -21,8 +21,8 @@
       "translatable": true
     },
     "_isVisibleBeforeCompletion": {
-      "type":"boolean",
-      "required":true,
+      "type": "boolean",
+      "required": true,
       "default": true,
       "title": "Show before assessment completion",
       "inputType": "Checkbox",
@@ -39,8 +39,8 @@
       "help": "This is the unique name of the assessment for which results should be displayed"
     },
     "_retry": {
-      "type":"object",
-      "required":true,
+      "type": "object",
+      "required": true,
       "title": "",
       "properties":{
         "button": {
@@ -83,8 +83,8 @@
         "required":true,
         "properties":{
           "_score": {
-            "type":"number",
-            "required":false,
+            "type": "number",
+            "required": false,
             "title": "Score",
             "inputType": "Number",
             "validators": ["number"],
@@ -100,14 +100,14 @@
           },
           "_allowRetry": {
             "type":"boolean",
-            "required":true,
+            "required": true,
             "default": true,
             "title": "Allow Retry",
             "inputType": "Checkbox",
             "validators": []
-	  },
-	  "_classes": {
-	    "type": "string",
+	        },
+	        "_classes": {
+	          "type": "string",
             "required": false,
             "default": "",
             "inputType": "Text",

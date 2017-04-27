@@ -25,9 +25,9 @@
       "required":true,
       "default": true,
       "title": "Show before assessment completion",
-      "inputType": {"type": "Boolean", "options": [true, false]},
+      "inputType": "Checkbox",
       "validators": [],
-      "help": "If set to 'false', this will be hidden until the assessment is completed."
+      "help": "If disabled, this component will be hidden until the assessment is completed."
     },
     "_assessmentId": {
       "type": "string",
@@ -103,7 +103,7 @@
             "required":true,
             "default": true,
             "title": "Allow Retry",
-            "inputType": {"type": "Boolean", "options": [true, false]},
+            "inputType": "Checkbox",
             "validators": []
 	  },
 	  "_classes": {

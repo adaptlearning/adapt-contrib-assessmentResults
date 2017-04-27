@@ -105,9 +105,9 @@
             "title": "Allow Retry",
             "inputType": "Checkbox",
             "validators": []
-	        },
-	        "_classes": {
-	          "type": "string",
+          },
+          "_classes": {
+            "type": "string",
             "required": false,
             "default": "",
             "inputType": "Text",

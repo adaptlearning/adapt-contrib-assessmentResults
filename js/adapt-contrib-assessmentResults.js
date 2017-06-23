@@ -190,8 +190,6 @@ define([
         },
 
         setFeedback: function(feedbackBand) {
-            var completionBody = this.model.get("_completionBody");
-
             var state = this.model.get("_state");
             state.feedbackBand = feedbackBand;
 
@@ -200,7 +198,7 @@ define([
 
             this.checkRetryEnabled();
 
-            this.model.set("body", completionBody);
+            this.model.set("body", this.model.get("_completionBody"));
         },
         
         /**

@@ -27,16 +27,16 @@
       "title": "Show before assessment completion",
       "inputType": "Checkbox",
       "validators": [],
-      "help": "If disabled, this component will be hidden until the assessment is completed."
+      "help": "If not set, this component will be hidden until the assessment is completed."
     },
     "_assessmentId": {
       "type": "string",
       "required": true,
       "default": "",
-      "title": "Assessment",
+      "title": "Assessment Name",
       "inputType": "Text",
       "validators": ["required"],
-      "help": "This is the unique name of the assessment for which results should be displayed"
+      "help": "This is the unique name of the assessment for which results should be displayed."
     },
     "_retry": {
       "type": "object",
@@ -50,7 +50,8 @@
           "title": "Retry Button Text",
           "inputType": "Text",
           "validators": [],
-          "translatable": true
+          "translatable": true,
+          "help": "Text that appears on the retry button."
         },
         "feedback": {
           "type": "string",
@@ -88,7 +89,7 @@
             "title": "Score",
             "inputType": "Number",
             "validators": ["number"],
-            "help": "Enter a value representing the raw score or percentage for the start of the range"
+            "help": "Enter a value representing the raw score or percentage for the start of the range."
           },
           "feedback": {
             "type": "string",
@@ -96,7 +97,8 @@
             "default": "",
             "inputType": "Text",
             "validators": [],
-            "translatable": true
+            "translatable": true,
+            "help": "This text will be displayed to the learner when the learner's score falls within this band's range."
           },
           "_allowRetry": {
             "type":"boolean",
@@ -104,15 +106,17 @@
             "default": true,
             "title": "Allow Retry",
             "inputType": "Checkbox",
-            "validators": []
+            "validators": [],
+            "help": "Determines whether the learner will be allowed to re-attempt the assessment. If not set, the learner will not be allowed to retry the assessment regardless of any remaining attempts."
           },
           "_classes": {
             "type": "string",
             "required": false,
             "default": "",
+            "title": "Classes",
             "inputType": "Text",
             "validators": [],
-            "help": "Classes to be applied to the containing article; allows for custom styling based on the band the user's score falls into."
+            "help": "Classes to be applied to the containing article. Allows for custom styling based on the band the learner's score falls into."
           }
         }
       }

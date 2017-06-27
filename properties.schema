@@ -35,8 +35,8 @@
       "default": "",
       "title": "Assessment Name",
       "inputType": "Text",
-      "validators": ["required"],
-      "help": "This is the unique name of the assessment for which results should be displayed."
+      "validators": [],
+      "help": "This is the unique name of the assessment for which results should be displayed. If you only have one assessment you can leave this blank."
     },
     "_retry": {
       "type": "object",

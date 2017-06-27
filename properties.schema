@@ -27,7 +27,7 @@
       "title": "Show before assessment completion",
       "inputType": "Checkbox",
       "validators": [],
-      "help": "If not set, this component will be hidden until the assessment is completed."
+      "help": "Controls whether this component will be visible or hidden prior to the assessment having been completed."
     },
     "_assessmentId": {
       "type": "string",

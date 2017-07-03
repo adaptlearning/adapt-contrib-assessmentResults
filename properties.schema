@@ -21,26 +21,26 @@
       "translatable": true
     },
     "_isVisibleBeforeCompletion": {
-      "type":"boolean",
-      "required":true,
+      "type": "boolean",
+      "required": true,
       "default": true,
       "title": "Show before assessment completion",
-      "inputType": {"type": "Boolean", "options": [true, false]},
+      "inputType": "Checkbox",
       "validators": [],
-      "help": "If set to 'false', this will be hidden until the assessment is completed."
+      "help": "Controls whether this component will be visible or hidden prior to the assessment having been completed."
     },
     "_assessmentId": {
       "type": "string",
       "required": true,
       "default": "",
-      "title": "Assessment",
+      "title": "Assessment Name",
       "inputType": "Text",
-      "validators": ["required"],
-      "help": "This is the unique name of the assessment for which results should be displayed"
+      "validators": [],
+      "help": "This is the unique name of the assessment for which results should be displayed. If you only have one assessment you can leave this blank."
     },
     "_retry": {
-      "type":"object",
-      "required":true,
+      "type": "object",
+      "required": true,
       "title": "",
       "properties":{
         "button": {
@@ -50,7 +50,8 @@
           "title": "Retry Button Text",
           "inputType": "Text",
           "validators": [],
-          "translatable": true
+          "translatable": true,
+          "help": "Text that appears on the retry button."
         },
         "feedback": {
           "type": "string",
@@ -83,12 +84,12 @@
         "required":true,
         "properties":{
           "_score": {
-            "type":"number",
-            "required":false,
+            "type": "number",
+            "required": false,
             "title": "Score",
             "inputType": "Number",
             "validators": ["number"],
-            "help": "Enter a value representing the raw score or percentage for the start of the range"
+            "help": "Enter a value representing the raw score or percentage for the start of the range."
           },
           "feedback": {
             "type": "string",
@@ -96,23 +97,26 @@
             "default": "",
             "inputType": "Text",
             "validators": [],
-            "translatable": true
+            "translatable": true,
+            "help": "This text will be displayed to the learner when the learner's score falls within this band's range."
           },
           "_allowRetry": {
             "type":"boolean",
-            "required":true,
+            "required": true,
             "default": true,
             "title": "Allow Retry",
-            "inputType": {"type": "Boolean", "options": [true, false]},
-            "validators": []
-	  },
-	  "_classes": {
-	    "type": "string",
+            "inputType": "Checkbox",
+            "validators": [],
+            "help": "Determines whether the learner will be allowed to re-attempt the assessment. If not set, the learner will not be allowed to retry the assessment regardless of any remaining attempts."
+          },
+          "_classes": {
+            "type": "string",
             "required": false,
             "default": "",
+            "title": "Classes",
             "inputType": "Text",
             "validators": [],
-            "help": "Classes to be applied to the containing article; allows for custom styling based on the band the user's score falls into."
+            "help": "Classes to be applied to the containing article. Allows for custom styling based on the band the learner's score falls into."
           }
         }
       }

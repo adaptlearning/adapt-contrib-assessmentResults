@@ -115,7 +115,8 @@ define([
                 attemptsLeft: state.attemptsLeft,
                 score: state.score,
                 scoreAsPercent: state.scoreAsPercent,
-                maxScore: state.maxScore
+                maxScore: state.maxScore,
+                isPass: state.isPass
             });
             
             var feedbackBand = this.getFeedbackBand();

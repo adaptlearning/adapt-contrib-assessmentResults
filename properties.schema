@@ -58,7 +58,7 @@
           "required": false,
           "default": "",
           "title": "Retry Text",
-          "inputType": "Text",
+          "inputType": "TextArea",
           "validators": [],
           "help": "This text is displayed only when more attempts remain. You can use the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}.",
           "translatable": true
@@ -70,7 +70,7 @@
       "required": false,
       "default": "",
       "title": "Feedback Text",
-      "inputType": "Text",
+      "inputType": "TextArea",
       "validators": [],
       "help": "This text overwrites the standard body attribute upon completion of the assessment. It may make use of the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}. {{{feedback}}}, representing the feedback assigned to the appropriate band, is also allowed.",
       "translatable": true
@@ -95,7 +95,7 @@
             "type": "string",
             "required": false,
             "default": "",
-            "inputType": "Text",
+            "inputType": "TextArea",
             "validators": [],
             "translatable": true,
             "help": "This text will be displayed to the learner when the learner's score falls within this band's range."

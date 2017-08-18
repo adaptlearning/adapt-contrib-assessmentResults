@@ -104,8 +104,20 @@ define([
         onAssessmentsComplete: function(state) {
             if (this.model.get("_assessmentId") === undefined || 
                 this.model.get("_assessmentId") != state.id) return;
-
-            this.model.set("_state", state);
+            /*
+            make shortcuts to some of the key properties in the state object so that 
+            content developers can just use {{attemptsLeft}} in json instead of {{state.attemptsLeft}}
+            */
+            this.model.set( {
+                _state: state,
+                attempts: state.attempts,
+                attemptsSpent: state.attemptsSpent,
+                attemptsLeft: state.attemptsLeft,
+                score: state.score,
+                scoreAsPercent: state.scoreAsPercent,
+                maxScore: state.maxScore,
+                isPass: state.isPass
+            });
             
             var feedbackBand = this.getFeedbackBand();
             
@@ -179,19 +191,15 @@ define([
         },
 
         setFeedback: function(feedbackBand) {
-
-            var completionBody = this.model.get("_completionBody");
-
             var state = this.model.get("_state");
             state.feedbackBand = feedbackBand;
-            state.feedback = feedbackBand.feedback;
+
+            // ensure any handlebars expressions in the .feedback are handled...
+            this.model.set('feedback', Handlebars.compile(feedbackBand.feedback)(this.model.toJSON()));
 
             this.checkRetryEnabled();
 
-            completionBody = this.stringReplace(completionBody, state);
-
-            this.model.set("body", completionBody);
-
+            this.model.set("body", this.model.get("_completionBody"));
         },
         
         /**
@@ -233,47 +241,10 @@ define([
 
             if (showRetry) {
                 var retryFeedback =  this.model.get("_retry").feedback;
-                retryFeedback = this.stringReplace(retryFeedback, state);
                 this.model.set("retryFeedback", retryFeedback);
             } else {
                 this.model.set("retryFeedback", "");
             }
-        },
-
-        stringReplace: function(string, context) {
-            //use handlebars style escaping for string replacement
-            //only supports unescaped {{{ attributeName }}} and html escaped {{ attributeName }}
-            //will string replace recursively until no changes have occured
-
-            var changed = true;
-            while (changed) {
-                changed = false;
-                for (var k in context) {
-                    var contextValue = context[k];
-
-                    switch (typeof contextValue) {
-                        case "object":
-                            continue;
-                        case "number":
-                            contextValue = Math.floor(contextValue);
-                            break;
-                    }
-
-                    var regExNoEscaping = new RegExp("((\\{\\{\\{){1}[\\ ]*"+k+"[\\ ]*(\\}\\}\\}){1})","g");
-                    var regExEscaped = new RegExp("((\\{\\{){1}[\\ ]*"+k+"[\\ ]*(\\}\\}){1})","g");
-
-                    var preString = string;
-
-                    string = string.replace(regExNoEscaping, contextValue);
-                    var escapedText = $("<p>").text(contextValue).html();
-                    string = string.replace(regExEscaped, escapedText);
-
-                    if (string != preString) changed = true;
-
-                }
-            }
-
-            return string;
         },
 
         onRemove: function() {

@@ -130,20 +130,6 @@ define([
             this.show();
         },
 
-        onAssessmentComplete: function(state) {
-            this.model.set("_state", state);
-            
-            var feedbackBand = this.getFeedbackBand();
-            
-            this.setFeedback(feedbackBand);
-            
-            this.addClassesToArticle(feedbackBand);
-
-            this.render();
-            
-            this.show();
-        },
-
         onInview: function(event, visible, visiblePartX, visiblePartY) {
             if (visible) {
                 if (visiblePartY === 'top') {

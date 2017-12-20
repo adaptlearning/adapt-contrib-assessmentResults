@@ -166,7 +166,9 @@ define([
             this.model.set({
                 "title": this.model.get("originalTitle"),
                 "body": this.model.get("originalBody"),
-                "instruction": this.model.get("originalInstruction")
+                "instruction": this.model.get("originalInstruction"),
+                "retryFeedback": "",
+                "_isRetryEnabled": false
             });
         },
         

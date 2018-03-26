@@ -222,7 +222,14 @@ define([
             if (!assessmentModel.canResetInPage()) return false;
 
             var isRetryEnabled = state.feedbackBand._allowRetry !== false;
-            var isAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === "infinite");
+
+            var isAttemptsLeft; 
+            if (this.model.get('isPass')) {
+                isAttemptsLeft = false;
+            } else if (state.attemptsLeft > 0 || state.attemptsLeft === "infinite") {
+                isAttemptsLeft = true;
+            }
+            
             var allowResetIfPassed = state.isPass && state.allowResetIfPassed;
             
             var showRetry = isRetryEnabled && (isAttemptsLeft || allowResetIfPassed);

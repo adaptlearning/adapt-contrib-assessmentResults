@@ -156,8 +156,9 @@ define([
         checkCompletionOn: function() {
             var setCompletionOn = this.model.get('_setCompletionOn');
             var currentScore = this.model.get('scoreAsPercent');
+            var completionOnPassed = setCompletionOn === 'pass' && this.model.get('isPass');
 
-            if (!setCompletionOn || setCompletionOn === 'inview' || setCompletionOn === "pass" || setCompletionOn <= currentScore) {
+            if (!setCompletionOn || setCompletionOn === 'inview' || completionOnPassed || setCompletionOn <= currentScore) {
                 this.setCompletionStatus();
                 return;
             }

@@ -29,6 +29,15 @@
       "validators": [],
       "help": "Controls whether this component will be visible or hidden prior to the assessment having been completed."
     },
+    "_setCompletionOn": {
+      "type": "boolean",
+      "required": false,
+      "default": "pass",
+      "title": "Criteria for setting completion on this component.",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Can set to 'pass', or to a specific percentage score, eg '75'."
+    },
     "_assessmentId": {
       "type": "string",
       "required": true,

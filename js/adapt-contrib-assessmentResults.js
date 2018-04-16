@@ -183,7 +183,8 @@ define([
             state.feedbackBand = feedbackBand;
 
             // ensure any handlebars expressions in the .feedback are handled...
-            this.model.set('feedback', Handlebars.compile(feedbackBand.feedback)(this.model.toJSON()));
+            var feedback = feedbackBand.feedback ? Handlebars.compile(feedbackBand.feedback)(this.model.toJSON()) : "";
+            this.model.set({feedback: feedback});
 
             this.checkRetryEnabled();
 
@@ -205,6 +206,11 @@ define([
             var state = this.model.get("_state");
             var scoreProp = state.isPercentageBased ? 'scoreAsPercent' : 'score';
             var bands = _.sortBy(this.model.get("_bands"), '_score');
+
+            if (bands.length === 0) {
+                Adapt.log.warn("Assessment Results Component: It appears that you have not set up any feedback bands");
+                return "";
+            }
             
             for (var i = (bands.length - 1); i >= 0; i--) {
                 if (state[scoreProp] >= bands[i]._score) {

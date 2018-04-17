@@ -183,7 +183,8 @@ define([
             state.feedbackBand = feedbackBand;
 
             // ensure any handlebars expressions in the .feedback are handled...
-            this.model.set('feedback', Handlebars.compile(feedbackBand.feedback)(this.model.toJSON()));
+            var feedback = feedbackBand.feedback ? Handlebars.compile(feedbackBand.feedback)(this.model.toJSON()) : "";
+            this.model.set({feedback: feedback});
 
             this.checkRetryEnabled();
 

@@ -142,7 +142,7 @@ define([
                 }
 
                 if (this._isVisibleTop || this._isVisibleBottom) {
-                    this.checkCompletionOn();
+                    this.checkCompletion();
                     // Sometimes (with mobile and virtual keyboards) inview can be triggered
                     // but the component is not _visible = true, so it does not get marked
                     // complete. Delay the unbinding of the inview listener until complete
@@ -153,15 +153,29 @@ define([
             }
         },
 
-        checkCompletionOn: function() {
+        checkCompletion: function() {
             var setCompletionOn = this.model.get('_setCompletionOn');
-            var currentScore = this.model.get('scoreAsPercent');
-            var completionOnPassed = setCompletionOn === 'pass' && this.model.get('isPass');
 
-            if (!setCompletionOn || setCompletionOn === 'inview' || completionOnPassed || setCompletionOn <= currentScore) {
+            if (!setCompletionOn || setCompletionOn === 'inview') {
                 this.setCompletionStatus();
                 return;
             }
+
+            if (setCompletionOn === 'pass') {
+                this.setCompletionOnPass();
+                return;
+            } 
+
+            this.setCompletionOnScores(setCompletionOn)
+        },
+
+        setCompletionOnPass: function() {
+            if (this.model.get('isPass')) this.setCompletionStatus();
+        },
+
+        setCompletionOnScore: function(setCompletionOn) {
+            var currentScore = this.model.get('scoreAsPercent');
+            if (currentScore >= setCompletionOn) this.setCompletionStatus();
         },
 
         onRetry: function() {

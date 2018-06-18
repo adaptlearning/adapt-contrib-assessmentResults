@@ -154,28 +154,32 @@ define([
         },
 
         checkCompletion: function() {
+            const completionType = ['inview', 'pass'];
+
             var setCompletionOn = this.model.get('_setCompletionOn');
 
-            if (!setCompletionOn || setCompletionOn === 'inview') {
-                this.setCompletionStatus();
-                return;
+            // if (!setCompletionOn || setCompletionOn === 'inview') {
+            //     this.setCompletionStatus();
+            //     return;
+            // }
+
+            // if (setCompletionOn === 'pass') {
+            //     this.setCompletionOnPass();
+            //     return;
+            // }
+
+            switch(setCompletionOn) {
+                case completionType[0]:
+                    this.setCompletionStatus();
+                    break;
+                case completionType[1]:
+                    this.setCompletionOnPass();
+                    break;
             }
-
-            if (setCompletionOn === 'pass') {
-                this.setCompletionOnPass();
-                return;
-            } 
-
-            this.setCompletionOnScores(setCompletionOn)
         },
 
         setCompletionOnPass: function() {
             if (this.model.get('isPass')) this.setCompletionStatus();
-        },
-
-        setCompletionOnScore: function(setCompletionOn) {
-            var currentScore = this.model.get('scoreAsPercent');
-            if (currentScore >= setCompletionOn) this.setCompletionStatus();
         },
 
         onRetry: function() {

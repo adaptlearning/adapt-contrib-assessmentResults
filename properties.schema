@@ -30,13 +30,13 @@
       "help": "Controls whether this component will be visible or hidden prior to the assessment having been completed."
     },
     "_setCompletionOn": {
-      "type": "boolean",
+      "type": "string",
       "required": false,
-      "default": "pass",
+      "default": "inview",
       "title": "Criteria for setting completion on this component.",
       "inputType": "Text",
       "validators": [],
-      "help": "Can set to 'pass', or to a specific percentage score, eg '75'."
+      "help": "Can be set to 'inview' or 'pass'."
     },
     "_assessmentId": {
       "type": "string",

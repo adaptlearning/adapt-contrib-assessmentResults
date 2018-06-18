@@ -50,7 +50,7 @@ guide the learner’s interaction with the component.
 
 **_isVisibleBeforeCompletion** (boolean): Determines whether this component will be visible as the learner enters the assessment article or if it will be displayed only after the learner completes all question components. Acceptable values are `true` or `false`. The default is `false`.
 
-**_setCompletionOn** (string): If _isVisibleBeforeCompletion is set to true, setting this attribute will prevent the component from completing if the user scrolls passed the assessment without finishing it. Can be set to 'pass', or a percentage score vale eg '75'. The default is 'pass'.
+**_setCompletionOn** (string): If _isVisibleBeforeCompletion is set to true, setting this attribute will prevent the component from completing if the user scrolls passed the assessment without finishing it. Can be set to 'pass', or a percentage score value eg '75'. The default is 'pass'.
 
 **_retry** (object): Contains values for **button** and **feedback**.
 

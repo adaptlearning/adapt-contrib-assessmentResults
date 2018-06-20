@@ -50,7 +50,9 @@ guide the learner’s interaction with the component.
 
 **_isVisibleBeforeCompletion** (boolean): Determines whether this component will be visible as the learner enters the assessment article or if it will be displayed only after the learner completes all question components. Acceptable values are `true` or `false`. The default is `false`.
 
-**_retry** (object): Contains values for **button** and **feedback**. 
+**_setCompletionOn** (string): Can be set to _inview_ or _pass_. _Inview_ will set the component to completed when it is viewed by the user. _Pass_ will not allow this component to complete until the assessment has been passed. Default is _inview_.
+
+**_retry** (object): Contains values for **button** and **feedback**.
 
 >**button** (string): Text that appears on the retry button.
 

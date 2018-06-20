@@ -33,7 +33,7 @@ define([
         },
 
         checkIfVisible: function() {
-            
+
             if (!Adapt.assessment) {
                 return false;
             }
@@ -51,7 +51,7 @@ define([
             var isAttemptInProgress = state.attemptInProgress;
             var attemptsSpent = state.attemptsSpent;
             var hasHadAttempt = (!isAttemptInProgress && attemptsSpent > 0);
-            
+
             isVisible = (isVisibleBeforeCompletion && !isComplete) || hasHadAttempt;
 
             if (!wasVisible && isVisible) isVisible = false;
@@ -79,7 +79,7 @@ define([
         setupModelResetEvent: function() {
             if (this.model.onAssessmentsReset) return;
             this.model.onAssessmentsReset = function(state) {
-                if (this.get("_assessmentId") === undefined || 
+                if (this.get("_assessmentId") === undefined ||
                     this.get("_assessmentId") != state.id) return;
 
                 this.reset('hard', true);
@@ -102,10 +102,10 @@ define([
         },
 
         onAssessmentsComplete: function(state) {
-            if (this.model.get("_assessmentId") === undefined || 
+            if (this.model.get("_assessmentId") === undefined ||
                 this.model.get("_assessmentId") != state.id) return;
             /*
-            make shortcuts to some of the key properties in the state object so that 
+            make shortcuts to some of the key properties in the state object so that
             content developers can just use {{attemptsLeft}} in json instead of {{state.attemptsLeft}}
             */
             this.model.set( {
@@ -118,15 +118,15 @@ define([
                 maxScore: state.maxScore,
                 isPass: state.isPass
             });
-            
+
             var feedbackBand = this.getFeedbackBand();
-            
+
             this.setFeedback(feedbackBand);
-            
+
             this.addClassesToArticle(feedbackBand);
 
             this.render();
-            
+
             this.show();
         },
 
@@ -140,7 +140,7 @@ define([
                     this._isVisibleTop = true;
                     this._isVisibleBottom = true;
                 }
-                
+
                 if (this._isVisibleTop || this._isVisibleBottom) {
                     if(this.checkCompletion()) this.setCompletionStatus();
                     // Sometimes (with mobile and virtual keyboards) inview can be triggered
@@ -181,7 +181,7 @@ define([
                 "_isRetryEnabled": false
             });
         },
-        
+
         show: function() {
             if(!this.model.get('_isVisible')) {
                 this.model.set('_isVisible', true, {pluginName: "assessmentResults"});
@@ -193,22 +193,21 @@ define([
             state.feedbackBand = feedbackBand;
 
             // ensure any handlebars expressions in the .feedback are handled...
-            var feedback = feedbackBand.feedback ? Handlebars.compile(feedbackBand.feedback)(this.model.toJSON()) : "";
-            this.model.set({feedback: feedback});
+            this.model.set('feedback', Handlebars.compile(feedbackBand.feedback)(this.model.toJSON()));
 
             this.checkRetryEnabled();
 
             this.model.set("body", this.model.get("_completionBody"));
         },
-        
+
         /**
          * If there are classes specified for the feedback band, apply them to the containing article
          * This allows for custom styling based on the band the user's score falls into
          */
         addClassesToArticle: function(feedbackBand) {
-            
+
             if(!feedbackBand.hasOwnProperty('_classes')) return;
-            
+
             this.$el.parents('.article').addClass(feedbackBand._classes);
         },
 
@@ -216,7 +215,7 @@ define([
             var state = this.model.get("_state");
             var scoreProp = state.isPercentageBased ? 'scoreAsPercent' : 'score';
             var bands = _.sortBy(this.model.get("_bands"), '_score');
-            
+
             for (var i = (bands.length - 1); i >= 0; i--) {
                 if (state[scoreProp] >= bands[i]._score) {
                     return bands[i];
@@ -235,7 +234,7 @@ define([
             var isRetryEnabled = state.feedbackBand._allowRetry !== false;
             var isAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === "infinite");
             var allowResetIfPassed = state.isPass && state.allowResetIfPassed;
-            
+
             var showRetry = isRetryEnabled && (isAttemptsLeft || allowResetIfPassed);
             this.model.set("_isRetryEnabled", showRetry);
 
@@ -252,12 +251,12 @@ define([
 
             this.removeEventListeners();
         }
-        
+
     }, {
         template: 'assessmentResults'
     });
-    
+
     Adapt.register("assessmentResults", AssessmentResults);
-    
+
     return AssessmentResults;
 });

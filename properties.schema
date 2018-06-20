@@ -29,6 +29,19 @@
       "validators": [],
       "help": "Controls whether this component will be visible or hidden prior to the assessment having been completed."
     },
+    "_setCompletionOn": {
+      "type": "string",
+      "required": false,
+      "default": "inview",
+      "title": "Criteria for setting completion on this component.",
+      "enum": ["inview", "pass"],
+      "inputType": {
+        "type": "Select",
+        "options": ["inview", "pass"]
+      },
+      "validators": [],
+      "help": "Can set to complete when the component is inview, or when the assessment is passed."
+    },
     "_assessmentId": {
       "type": "string",
       "required": true,

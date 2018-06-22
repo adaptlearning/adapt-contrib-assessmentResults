@@ -19,7 +19,7 @@ define([
 
             this.setupModelResetEvent();
 
-            this.checkIfComplete();
+            this.checkIfAssessmentComplete();
 
             this.checkIfVisible();
         },
@@ -59,7 +59,7 @@ define([
             this.model.set('_isVisible', isVisible, {pluginName: "assessmentResults"});
         },
 
-        checkIfComplete: function() {
+        checkIfAssessmentComplete: function() {
             
             if (!Adapt.assessment) {
                 return false;
@@ -142,7 +142,7 @@ define([
                 }
                 
                 if (this._isVisibleTop || this._isVisibleBottom) {
-                    this.setCompletionStatus();
+                    if(this.checkCompletion()) this.setCompletionStatus();
                     // Sometimes (with mobile and virtual keyboards) inview can be triggered
                     // but the component is not _visible = true, so it does not get marked
                     // complete. Delay the unbinding of the inview listener until complete
@@ -151,6 +151,14 @@ define([
                     }
                 }
             }
+        },
+
+        checkCompletion: function() {
+            if (this.model.get('_setCompletionOn') === 'pass' !this.model.get('isPass')) {
+                return false;
+            }
+
+            return true;
         },
 
         onRetry: function() {

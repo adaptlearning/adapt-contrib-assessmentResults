@@ -29,6 +29,19 @@
       "validators": [],
       "help": "Controls whether this component will be visible or hidden prior to the assessment having been completed."
     },
+    "_setCompletionOn": {
+      "type": "string",
+      "required": false,
+      "default": "inview",
+      "title": "Set completion on:",
+      "enum": ["inview", "pass"],
+      "inputType": {
+        "type": "Select",
+        "options": ["inview", "pass"]
+      },
+      "validators": [],
+      "help": "Set to 'pass' to have the component mark as completed only if the learner passed the associated assessment."
+    },
     "_assessmentId": {
       "type": "string",
       "required": true,

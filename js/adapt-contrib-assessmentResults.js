@@ -154,7 +154,7 @@ define([
         },
 
         checkCompletion: function() {
-            if (this.model.get('_setCompletionOn') === 'pass' !this.model.get('isPass')) {
+            if (this.model.get('_setCompletionOn') === 'pass' && !this.model.get('isPass')) {
                 return false;
             }
 

@@ -71,9 +71,10 @@ define([
             var state = assessmentModel.getState();
             if (state.isComplete) {
                 this.onAssessmentsComplete(state);
-            } else {
-                this.model.reset('hard', true);
+                return;
             }
+
+            this.model.reset('hard', true);
         },
 
         setupModelResetEvent: function() {
@@ -235,9 +236,10 @@ define([
             if (showRetry) {
                 var retryFeedback =  this.model.get('_retry').feedback;
                 this.model.set('retryFeedback', retryFeedback);
-            } else {
-                this.model.set('retryFeedback', "");
+                return;
             }
+
+            this.model.set('retryFeedback', "");
         },
 
         onRemove: function() {

@@ -11,7 +11,7 @@ define([
         },
 
         preRender: function () {
-            if (this.model.setLocking) this.model.setLocking("_isVisible", false);
+            if (this.model.setLocking) this.model.setLocking('_isVisible', false);
 
             this.saveOriginalTexts();
 
@@ -26,9 +26,9 @@ define([
 
         saveOriginalTexts: function() {
             this.model.set({
-                "originalTitle": this.model.get("title"),
-                "originalBody": this.model.get("body"),
-                "originalInstruction": this.model.get("instruction")
+                'originalTitle': this.model.get('title'),
+                'originalBody': this.model.get('body'),
+                'originalInstruction': this.model.get('instruction')
             });
         },
 
@@ -38,12 +38,12 @@ define([
                 return false;
             }
 
-            var isVisibleBeforeCompletion = this.model.get("_isVisibleBeforeCompletion") || false;
+            var isVisibleBeforeCompletion = this.model.get('_isVisibleBeforeCompletion') || false;
             var isVisible = false;
 
-            var wasVisible = this.model.get("_isVisible");
+            var wasVisible = this.model.get('_isVisible');
 
-            var assessmentModel = Adapt.assessment.get(this.model.get("_assessmentId"));
+            var assessmentModel = Adapt.assessment.get(this.model.get('_assessmentId'));
             if (!assessmentModel || assessmentModel.length === 0) return;
 
             var state = assessmentModel.getState();
@@ -65,7 +65,7 @@ define([
                 return false;
             }
 
-            var assessmentModel = Adapt.assessment.get(this.model.get("_assessmentId"));
+            var assessmentModel = Adapt.assessment.get(this.model.get('_assessmentId'));
             if (!assessmentModel || assessmentModel.length === 0) return;
 
             var state = assessmentModel.getState();
@@ -79,8 +79,8 @@ define([
         setupModelResetEvent: function() {
             if (this.model.onAssessmentsReset) return;
             this.model.onAssessmentsReset = function(state) {
-                if (this.get("_assessmentId") === undefined ||
-                    this.get("_assessmentId") != state.id) return;
+                if (this.get('_assessmentId') === undefined ||
+                    this.get('_assessmentId') != state.id) return;
 
                 this.reset('hard', true);
             };
@@ -102,8 +102,8 @@ define([
         },
 
         onAssessmentsComplete: function(state) {
-            if (this.model.get("_assessmentId") === undefined ||
-                this.model.get("_assessmentId") != state.id) return;
+            if (this.model.get('_assessmentId') === undefined ||
+                this.model.get('_assessmentId') != state.id) return;
             /*
             make shortcuts to some of the key properties in the state object so that
             content developers can just use {{attemptsLeft}} in json instead of {{state.attemptsLeft}}
@@ -147,14 +147,14 @@ define([
                     // but the component is not _visible = true, so it does not get marked
                     // complete. Delay the unbinding of the inview listener until complete
                     if (this.model.get('_isComplete')) {
-                        this.$el.off("inview");
+                        this.$el.off('inview');
                     }
                 }
             }
         },
 
         checkCompletion: function() {
-            if (this.model.get('_setCompletionOn') === 'pass' && !this.model.get('isPass')) {
+            if (this.model.get('_setCompletionOn') === "pass" && !this.model.get('isPass')) {
                 return false;
             }
 
@@ -162,7 +162,7 @@ define([
         },
 
         onRetry: function() {
-            var state = this.model.get("_state");
+            var state = this.model.get('_state');
             var assessmentModel = Adapt.assessment.get(state.id);
 
             this.restoreOriginalTexts();
@@ -172,11 +172,11 @@ define([
 
         restoreOriginalTexts: function() {
             this.model.set({
-                "title": this.model.get("originalTitle"),
-                "body": this.model.get("originalBody"),
-                "instruction": this.model.get("originalInstruction"),
-                "retryFeedback": "",
-                "_isRetryEnabled": false
+                'title': this.model.get('originalTitle'),
+                'body': this.model.get('originalBody'),
+                'instruction': this.model.get('originalInstruction'),
+                'retryFeedback': "",
+                '_isRetryEnabled': false
             });
         },
 
@@ -187,7 +187,7 @@ define([
         },
 
         setFeedback: function(feedbackBand) {
-            var state = this.model.get("_state");
+            var state = this.model.get('_state');
             state.feedbackBand = feedbackBand;
 
             // ensure any handlebars expressions in the .feedback are handled...
@@ -196,7 +196,7 @@ define([
 
             this.checkRetryEnabled();
 
-            this.model.set("body", this.model.get("_completionBody"));
+            this.model.set('body', this.model.get('_completionBody'));
         },
 
         /**
@@ -211,9 +211,9 @@ define([
         },
 
         getFeedbackBand: function() {
-            var state = this.model.get("_state");
+            var state = this.model.get('_state');
             var scoreProp = state.isPercentageBased ? 'scoreAsPercent' : 'score';
-            var bands = _.sortBy(this.model.get("_bands"), '_score');
+            var bands = _.sortBy(this.model.get('_bands'), '_score');
 
             for (var i = (bands.length - 1); i >= 0; i--) {
                 if (state[scoreProp] >= bands[i]._score) {
@@ -225,7 +225,7 @@ define([
         },
 
         checkRetryEnabled: function() {
-            var state = this.model.get("_state");
+            var state = this.model.get('_state');
 
             var assessmentModel = Adapt.assessment.get(state.id);
             if (!assessmentModel.canResetInPage()) return false;
@@ -235,24 +235,24 @@ define([
             var allowResetIfPassed = state.isPass && state.allowResetIfPassed;
 
             var showRetry = isRetryEnabled && (isAttemptsLeft || allowResetIfPassed);
-            this.model.set("_isRetryEnabled", showRetry);
+            this.model.set('_isRetryEnabled', showRetry);
 
             if (showRetry) {
-                var retryFeedback =  this.model.get("_retry").feedback;
-                this.model.set("retryFeedback", retryFeedback);
+                var retryFeedback =  this.model.get('_retry').feedback;
+                this.model.set('retryFeedback', retryFeedback);
             } else {
-                this.model.set("retryFeedback", "");
+                this.model.set('retryFeedback', "");
             }
         },
 
         onRemove: function() {
-            if (this.model.unsetLocking) this.model.unsetLocking("_isVisible");
+            if (this.model.unsetLocking) this.model.unsetLocking('_isVisible');
 
             this.removeEventListeners();
         }
 
     }, {
-        template: 'assessmentResults'
+        template: "assessmentResults"
     });
 
     return Adapt.register("assessmentResults", AssessmentResults);

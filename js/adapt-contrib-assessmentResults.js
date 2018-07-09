@@ -255,7 +255,5 @@ define([
         template: 'assessmentResults'
     });
 
-    Adapt.register("assessmentResults", AssessmentResults);
-
-    return AssessmentResults;
+    return Adapt.register("assessmentResults", AssessmentResults);
 });

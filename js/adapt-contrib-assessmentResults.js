@@ -93,8 +93,10 @@ define([
         },
 
         setupEventListeners: function() {
-            this.listenTo(Adapt, 'assessments:complete', this.onAssessmentsComplete);
-            this.listenToOnce(Adapt, 'remove', this.onRemove);
+            this.listenTo(Adapt, {
+                'assessments:complete': this.onAssessmentsComplete,
+                'remove': this.onRemove
+            });
         },
 
         onAssessmentsComplete: function(state) {

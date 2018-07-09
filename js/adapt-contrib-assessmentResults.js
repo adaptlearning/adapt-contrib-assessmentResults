@@ -11,7 +11,7 @@ define([
         },
 
         preRender: function () {
-            if (this.model.setLocking) this.model.setLocking('_isVisible', false);
+            this.model.setLocking('_isVisible', false);
 
             this.saveOriginalTexts();
 
@@ -241,7 +241,7 @@ define([
         },
 
         onRemove: function() {
-            if (this.model.unsetLocking) this.model.unsetLocking('_isVisible');
+            this.model.unsetLocking('_isVisible');
         }
 
     }, {

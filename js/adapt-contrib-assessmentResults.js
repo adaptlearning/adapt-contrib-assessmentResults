@@ -96,11 +96,6 @@ define([
             this.listenToOnce(Adapt, 'remove', this.onRemove);
         },
 
-        removeEventListeners: function() {
-            this.stopListening(Adapt, 'assessments:complete', this.onAssessmentsComplete);
-            this.stopListening(Adapt, 'remove', this.onRemove);
-        },
-
         onAssessmentsComplete: function(state) {
             if (this.model.get('_assessmentId') === undefined ||
                 this.model.get('_assessmentId') != state.id) return;
@@ -247,8 +242,6 @@ define([
 
         onRemove: function() {
             if (this.model.unsetLocking) this.model.unsetLocking('_isVisible');
-
-            this.removeEventListeners();
         }
 
     }, {

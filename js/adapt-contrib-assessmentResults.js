@@ -26,9 +26,9 @@ define([
 
         saveOriginalTexts: function() {
             this.model.set({
-                'originalTitle': this.model.get('title'),
-                'originalBody': this.model.get('body'),
-                'originalInstruction': this.model.get('instruction')
+                originalTitle: this.model.get('title'),
+                originalBody: this.model.get('body'),
+                originalInstruction: this.model.get('instruction')
             });
         },
 
@@ -170,11 +170,11 @@ define([
 
         restoreOriginalTexts: function() {
             this.model.set({
-                'title': this.model.get('originalTitle'),
-                'body': this.model.get('originalBody'),
-                'instruction': this.model.get('originalInstruction'),
-                'retryFeedback': "",
-                '_isRetryEnabled': false
+                title: this.model.get('originalTitle'),
+                body: this.model.get('originalBody'),
+                instruction: this.model.get('originalInstruction'),
+                retryFeedback: "",
+                _isRetryEnabled: false
             });
         },
 

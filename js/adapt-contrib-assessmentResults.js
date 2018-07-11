@@ -230,9 +230,7 @@ define([
 
             var isRetryEnabled = state.feedbackBand._allowRetry !== false;
             var isAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === "infinite");
-            var allowResetIfPassed = state.isPass && state.allowResetIfPassed;
-
-            var showRetry = isRetryEnabled && (isAttemptsLeft || allowResetIfPassed);
+            var showRetry = isRetryEnabled && isAttemptsLeft && (!state.isPass || state.allowResetIfPassed);
             this.model.set('_isRetryEnabled', showRetry);
 
             if (showRetry) {

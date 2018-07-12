@@ -27,24 +27,24 @@ define([
         },
 
         onInview: function(event, visible, visiblePartX, visiblePartY) {
-            if (visible) {
-                if (visiblePartY === 'top') {
-                    this._isVisibleTop = true;
-                } else if (visiblePartY === 'bottom') {
-                    this._isVisibleBottom = true;
-                } else {
-                    this._isVisibleTop = true;
-                    this._isVisibleBottom = true;
-                }
+            if (!visible) return;
 
-                if (this._isVisibleTop || this._isVisibleBottom) {
-                    this.model.checkCompletion();
-                    // Sometimes (with mobile and virtual keyboards) inview can be triggered
-                    // but the component is not _visible = true, so it does not get marked
-                    // complete. Delay the unbinding of the inview listener until complete
-                    if (this.model.get('_isComplete')) {
-                        this.$el.off('inview');
-                    }
+            if (visiblePartY === 'top') {
+                this._isVisibleTop = true;
+            } else if (visiblePartY === 'bottom') {
+                this._isVisibleBottom = true;
+            } else {
+                this._isVisibleTop = true;
+                this._isVisibleBottom = true;
+            }
+
+            if (this._isVisibleTop || this._isVisibleBottom) {
+                this.model.checkCompletion();
+                // Sometimes (with mobile and virtual keyboards) inview can be triggered
+                // but the component is not _visible = true, so it does not get marked
+                // complete. Delay the unbinding of the inview listener until complete
+                if (this.model.get('_isComplete')) {
+                    this.$el.off('inview');
                 }
             }
         },
@@ -59,13 +59,13 @@ define([
          * This allows for custom styling based on the band the user's score falls into
          */
         addClassesToArticle: function(model, value) {
-            if(!value._classes) return;
+            if (!value._classes) return;
 
             this.$el.parents('.article').addClass(value._classes);
         }
 
     }, {
-        template: "assessmentResults"
+        template: 'assessmentResults'
     });
 
     return AssessmentResultsView;

@@ -83,12 +83,12 @@ define([
             if (!assessmentModel.canResetInPage()) return false;
 
             var isRetryEnabled = this.get('_feedbackBand')._allowRetry !== false;
-            var isAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === "infinite");
+            var isAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === 'infinite');
             var showRetry = isRetryEnabled && isAttemptsLeft && (!state.isPass || state.allowResetIfPassed);
 
             this.set({
                 _isRetryEnabled: showRetry,
-                retryFeedback: showRetry ? this.get('_retry').feedback : ""
+                retryFeedback: showRetry ? this.get('_retry').feedback : ''
             });
         },
 
@@ -96,7 +96,7 @@ define([
             var feedbackBand = this.get('_feedbackBand');
 
             // ensure any handlebars expressions in the .feedback are handled...
-            var feedback = feedbackBand.feedback ? Handlebars.compile(feedbackBand.feedback)(this.toJSON()) : "";
+            var feedback = feedbackBand.feedback ? Handlebars.compile(feedbackBand.feedback)(this.toJSON()) : '';
 
             this.set({
                 feedback: feedback,
@@ -131,11 +131,11 @@ define([
                 isVisible = !this.get('_isVisible');
             }
 
-            this.set('_isVisible', isVisible, {pluginName: "assessmentResults"});
+            this.set('_isVisible', isVisible, {pluginName: 'assessmentResults'});
         },
 
         checkCompletion: function() {
-            if (this.get('_setCompletionOn') === "pass" && !this.get('isPass')) {
+            if (this.get('_setCompletionOn') === 'pass' && !this.get('isPass')) {
                 return;
             }
 
@@ -153,9 +153,9 @@ define([
             this.set({
                 body: this.get('originalBody'),
                 state: null,
-                feedback: "",
+                feedback: '',
                 _feedbackBand: null,
-                retryFeedback: "",
+                retryFeedback: '',
                 _isRetryEnabled: false
             });
 

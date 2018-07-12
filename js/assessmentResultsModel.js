@@ -67,10 +67,11 @@ define([
             var bands = _.sortBy(this.get('_bands'), '_score');
 
             for (var i = (bands.length - 1); i >= 0; i--) {
-                if (state[scoreProp] >= bands[i]._score) {
-                    this.set('_feedbackBand', bands[i]);
-                    break;
-                }
+                var isScoreInBandRange =  (state[scoreProp] >= bands[i]._score);
+                if (!isScoreInBandRange) continue;
+
+                this.set('_feedbackBand', bands[i]);
+                break;
             }
         },
 

@@ -230,18 +230,12 @@ define([
 
             var isRetryEnabled = state.feedbackBand._allowRetry !== false;
             var isAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === "infinite");
-            var allowResetIfPassed = state.isPass && state.allowResetIfPassed;
+            var showRetry = isRetryEnabled && isAttemptsLeft && (!state.isPass || state.allowResetIfPassed);
 
-            var showRetry = isRetryEnabled && (isAttemptsLeft || allowResetIfPassed);
-            this.model.set('_isRetryEnabled', showRetry);
-
-            if (showRetry) {
-                var retryFeedback =  this.model.get('_retry').feedback;
-                this.model.set('retryFeedback', retryFeedback);
-                return;
-            }
-
-            this.model.set('retryFeedback', "");
+            this.model.set({
+                _isRetryEnabled: showRetry,
+                retryFeedback: showRetry ? this.model.get('_retry').feedback : ""
+            });
         },
 
         onRemove: function() {

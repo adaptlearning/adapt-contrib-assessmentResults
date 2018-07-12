@@ -12,7 +12,7 @@ define([
             this.listenTo(Adapt, {
                 'assessments:complete': this.onAssessmentComplete,
                 'assessments:reset': this.onAssessmentReset,
-                'preRemove': function () {
+                preRemove: function () {
                     this.unsetLocking('_isVisible');
                 }
             });

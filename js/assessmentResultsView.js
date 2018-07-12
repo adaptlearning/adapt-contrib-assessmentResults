@@ -13,6 +13,10 @@ define([
         preRender: function () {
             this.model.setLocking('_isVisible', false);
 
+            this.listenTo(Adapt, 'preRemove', function () {
+                this.model.unsetLocking('_isVisible');
+            });
+
             this.listenTo(this.model, {
                 'change:_feedbackBand': this.addClassesToArticle,
                 'change:body': this.render

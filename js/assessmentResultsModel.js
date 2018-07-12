@@ -10,10 +10,7 @@ define([
 
             this.listenTo(Adapt, {
                 'assessments:complete': this.onAssessmentComplete,
-                'assessments:reset': this.onAssessmentReset,
-                preRemove: function () {
-                    this.unsetLocking('_isVisible');
-                }
+                'assessments:reset': this.onAssessmentReset
             });
         },
 

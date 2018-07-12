@@ -2,7 +2,6 @@ define([
     'core/js/adapt',
     'core/js/views/componentView'
 ], function(Adapt, ComponentView) {
-    'use strict';
 
     var AssessmentResultsView = ComponentView.extend({
 

@@ -2,7 +2,6 @@ define([
     'core/js/adapt',
     'core/js/models/componentModel'
 ], function(Adapt, ComponentModel) {
-    'use strict';
 
     var AssessmentResultsModel = ComponentModel.extend({
 

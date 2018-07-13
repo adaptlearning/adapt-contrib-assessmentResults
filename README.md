@@ -50,6 +50,8 @@ guide the learner’s interaction with the component.
 
 **_isVisibleBeforeCompletion** (boolean): Determines whether this component will be visible as the learner enters the assessment article or if it will be displayed only after the learner completes all question components. Acceptable values are `true` or `false`. The default is `false`.
 
+**_setCompletionOn** (string): Can be set to `"inview"` or `"pass"`. A a setting of `"inview"` will cause the component to be marked as completed when it has been viewed regardless of whether or not the assessment was passed, whereas a setting of `"pass"` will cause the component to be set to completed when this component has been viewed **and** the assessment has been passed. This setting can be very useful if you have further content on the page that's hidden by trickle which you don't want the user to be able to access until they have passed the assessment. Default is `"inview"`.
+
 **_retry** (object): Contains values for **button** and **feedback**. 
 
 >**button** (string): Text that appears on the retry button.
@@ -76,7 +78,7 @@ In the image to the right, numbers are paired with the text's source attributes 
 1. _displayTitle  
 2. _bands.feedback  
 3. {{scoreAsPercent}}  
-4. _retry.button  
+4. \_retry.button  
 
 [Visit the **Usage and Tips** page of the wiki](https://github.com/adaptlearning/adapt-contrib-assessmentResults/wiki/Usage-and-Tips) for more information about configuring **Assessment Results**.
 
@@ -87,7 +89,7 @@ For a guide on the difference between using two curly braces and three curly bra
 No known limitations.  
 
 ----------------------------
-**Version number:**  2.2.0   <a href="https://community.adaptlearning.org/" target="_blank"><img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/adapt-logo-mrgn-lft.jpg" alt="adapt learning logo" align="right"></a>   
+**Version number:**  2.3.0   <a href="https://community.adaptlearning.org/" target="_blank"><img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/adapt-logo-mrgn-lft.jpg" alt="adapt learning logo" align="right"></a>   
 **Framework versions:** 2.1+  
 **Author / maintainer:** Adapt Core Team with [contributors](https://github.com/adaptlearning/adapt-contrib-assessmentResults/graphs/contributors)    
 **Accessibility support:** WAI AA   

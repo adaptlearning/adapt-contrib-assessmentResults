@@ -18,7 +18,7 @@ define([
          * Checks to see if the assessment was completed in a previous session or not
          */
         checkIfAssessmentComplete: function() {
-            if (!Adapt.assessment ||this.get('_assessmentId') === undefined) {
+            if (!Adapt.assessment || this.get('_assessmentId') === undefined) {
                 return;
             }
 

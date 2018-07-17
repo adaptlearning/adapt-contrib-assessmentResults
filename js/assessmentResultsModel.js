@@ -143,7 +143,12 @@ define([
             if (this.get('_assessmentId') === undefined ||
                 this.get('_assessmentId') != state.id) return;
 
-            this.reset('hard', true);
+            // if we don't define our own reset type (or it's set to 'inherit'), use the same reset type as the assessment
+            var resetType = this.has('_resetType') ? this.get('_resetType') : state.resetType;
+            if (resetType === 'inherit') {
+                resetType = state.resetType;
+            }
+            this.reset(resetType, true);
         },
 
         reset: function() {

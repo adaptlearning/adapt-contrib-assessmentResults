@@ -6,6 +6,7 @@
     "_component": "assessmentResults",
     "_classes": "",
     "_layout": "full",
+    "_resetType": "inherit",
     "title": "Results",
     "displayTitle": "Results",
     "body": "This component you're reading is a results component.",

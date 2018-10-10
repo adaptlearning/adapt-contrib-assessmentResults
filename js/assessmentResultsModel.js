@@ -149,7 +149,7 @@ define([
 
             var resetType = this.get('_resetType');
             if (!resetType || resetType === 'inherit') {
-                resetType = state.resetType || 'hard';// backwards compatibility - state.resetType was only added in assessment v2.2.1
+                resetType = state.resetType || 'hard';// backwards compatibility - state.resetType was only added in assessment v2.3.0
             }
             this.reset(resetType, true);
         },

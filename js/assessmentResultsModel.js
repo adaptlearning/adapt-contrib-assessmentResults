@@ -139,11 +139,19 @@ define([
             this.setCompletionStatus();
         },
 
+        /**
+         * Handles resetting the component whenever its corresponding assessment is reset
+         * The component can either inherit the assessment's reset type or define its own
+         */
         onAssessmentReset: function(state) {
             if (this.get('_assessmentId') === undefined ||
                 this.get('_assessmentId') != state.id) return;
 
-            this.reset('hard', true);
+            var resetType = this.get('_resetType');
+            if (!resetType || resetType === 'inherit') {
+                resetType = state.resetType || 'hard';// backwards compatibility - state.resetType was only added in assessment v2.3.0
+            }
+            this.reset(resetType, true);
         },
 
         reset: function() {

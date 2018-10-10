@@ -52,6 +52,19 @@
       "validators": [],
       "help": "Set to 'pass' to have the component mark as completed only if the learner passed the associated assessment."
     },
+    "_resetType": {
+      "type": "string",
+      "required": false,
+      "default": "inherit",
+      "title": "Reset type:",
+      "enum": ["inherit", "hard", "soft"],
+      "inputType": {
+        "type": "Select",
+        "options": ["inherit", "hard", "soft"]
+      },
+      "validators": [],
+      "help": "Set to 'inherit' to use the same reset type as the assessment. Set to 'hard' to have the component's completion reset when the assessment is reset, set to 'soft' if you don't want completion to be reset."
+    },
     "_assessmentId": {
       "type": "string",
       "required": true,

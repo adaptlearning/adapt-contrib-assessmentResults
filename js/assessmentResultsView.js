@@ -1,4 +1,4 @@
-define([
+setupInviewCompletiondefine([
     'core/js/adapt',
     'core/js/views/componentView'
 ], function(Adapt, ComponentView) {
@@ -26,7 +26,7 @@ define([
 
         postRender: function() {
             this.setReadyStatus();
-            this.setupInviewListener('.component-inner', this.model.checkCompletion.bind(this.model));
+            this.setupInviewCompletion('.component-inner', this.model.checkCompletion.bind(this.model));
         },
 
         onRetryClicked: function() {

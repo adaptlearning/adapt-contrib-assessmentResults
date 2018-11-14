@@ -1,4 +1,4 @@
-setupInviewCompletiondefine([
+define([
     'core/js/adapt',
     'core/js/views/componentView'
 ], function(Adapt, ComponentView) {

@@ -79,7 +79,8 @@ define([
             var assessmentModel = Adapt.assessment.get(state.id);
             if (!assessmentModel.canResetInPage()) return false;
 
-            var isRetryEnabled = this.get('_feedbackBand')._allowRetry !== false;
+            var feedbackBand = this.get('_feedbackBand');
+            var isRetryEnabled = (feedbackBack && feedbackBand._allowRetry) !== false;
             var isAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === 'infinite');
             var showRetry = isRetryEnabled && isAttemptsLeft && (!state.isPass || state.allowResetIfPassed);
 

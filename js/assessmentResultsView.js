@@ -61,8 +61,8 @@ define([
 
             Adapt.assessment.get(state.id).reset();
 
-            if (this.model.get('_routeToAssessment') === true) {
-                Adapt.trigger('router:navigateTo', [state.articleId]);
+            if (this.model.get('_retry')._routeToAssessment === true) {
+                Adapt.navigateToElement('.' + state.articleId);
             }
         },
 

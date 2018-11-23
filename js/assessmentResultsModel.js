@@ -79,7 +79,8 @@ define([
             var assessmentModel = Adapt.assessment.get(state.id);
             if (!assessmentModel.canResetInPage()) return false;
 
-            var isRetryEnabled = this.get('_feedbackBand')._allowRetry !== false;
+            var feedbackBand = this.get('_feedbackBand');
+            var isRetryEnabled = (feedbackBand && feedbackBand._allowRetry) !== false;
             var isAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === 'infinite');
             var showRetry = isRetryEnabled && isAttemptsLeft && (!state.isPass || state.allowResetIfPassed);
 
@@ -93,7 +94,7 @@ define([
             var feedbackBand = this.get('_feedbackBand');
 
             // ensure any handlebars expressions in the .feedback are handled...
-            var feedback = feedbackBand.feedback ? Handlebars.compile(feedbackBand.feedback)(this.toJSON()) : '';
+            var feedback = feedbackBand ? Handlebars.compile(feedbackBand.feedback)(this.toJSON()) : '';
 
             this.set({
                 feedback: feedback,

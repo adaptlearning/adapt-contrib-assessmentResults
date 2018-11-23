@@ -88,17 +88,17 @@
           "validators": [],
           "help": "This text is displayed only when more attempts remain. You can use the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}.",
           "translatable": true
+        },
+        "_routeToAssessment": {
+          "type": "boolean",
+          "required": true,
+          "default": false,
+          "title": "Redirect to assessment on retry",
+          "inputType": "Checkbox",
+          "validators": [],
+          "help": "When enabled, this will take the user back to the assessment when the \"Retry Assessment\" button is clicked."
         }
       }
-    },
-    "_routeToAssessment": {
-      "type": "boolean",
-      "required": true,
-      "default": false,
-      "title": "Redirect to assessment on retry",
-      "inputType": "Checkbox",
-      "validators": [],
-      "help": "When enabled, this will take the user back to the assessment when the \"Retry Assessment\" button is clicked."
     },
     "_completionBody": {
       "type": "string",

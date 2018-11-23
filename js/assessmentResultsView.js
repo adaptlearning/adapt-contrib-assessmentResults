@@ -52,9 +52,18 @@ define([
             }
         },
 
+        /**
+         * Resets the state of the assessment and optionally redirects the user
+         * back to the assessment for another attempt.
+         */
         onRetryClicked: function() {
-            var assessmentId = this.model.get('_state').id;
-            Adapt.assessment.get(assessmentId).reset();
+            var state = this.model.get('_state');
+
+            Adapt.assessment.get(state.id).reset();
+
+            if (this.model.get('_routeToAssessment') === true) {
+                Adapt.trigger('router:navigateTo', [state.articleId]);
+            }
         },
 
         /**
@@ -62,7 +71,7 @@ define([
          * This allows for custom styling based on the band the user's score falls into
          */
         addClassesToArticle: function(model, value) {
-            if (!value._classes) return;
+            if (!value || !value._classes) return;
 
             this.$el.parents('.article').addClass(value._classes);
         }

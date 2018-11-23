@@ -101,6 +101,15 @@
         }
       }
     },
+    "_routeToAssessment": {
+      "type": "boolean",
+      "required": true,
+      "default": false,
+      "title": "Redirect to assessment on retry",
+      "inputType": "Checkbox",
+      "validators": [],
+      "help": "When enabled, this will take the user back to the assessment when the \"Retry Assessment\" button is clicked."
+    },
     "_completionBody": {
       "type": "string",
       "required": false,

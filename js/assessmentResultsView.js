@@ -6,7 +6,7 @@ define([
   var AssessmentResultsView = ComponentView.extend({
 
     events: {
-      'click .results-retry-button button': 'onRetryClicked'
+      'click .js-assessment-retry-btn': 'onRetryClicked'
     },
 
     preRender: function () {
@@ -26,7 +26,7 @@ define([
 
     postRender: function() {
       this.setReadyStatus();
-      this.setupInviewCompletion('.component-inner', this.model.checkCompletion.bind(this.model));
+      this.setupInviewCompletion('.component__inner', this.model.checkCompletion.bind(this.model));
     },
 
     /**

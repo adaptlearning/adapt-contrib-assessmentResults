@@ -26,7 +26,7 @@ define([
             if (!assessmentModel || assessmentModel.length === 0) return;
 
             var state = assessmentModel.getState();
-            if (state.isComplete) {
+            if (state.isComplete && !state.allowResetIfPassed) {
                 this.onAssessmentComplete(state);
                 return;
             }

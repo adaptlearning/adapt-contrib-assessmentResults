@@ -167,7 +167,6 @@ define([
 
       ComponentModel.prototype.reset.apply(this, arguments);
     }
-
   });
 
   return AssessmentResultsModel;

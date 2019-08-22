@@ -1,4 +1,4 @@
-// scomponents.json
+    // components.json
     {
         "_id": "c-05",
         "_parentId": "b-05",
@@ -6,17 +6,16 @@
         "_component": "assessmentResults",
         "_classes": "",
         "_layout": "full",
-        "_resetType": "inherit",
         "title": "Results",
         "displayTitle": "Results",
         "body": "This component you're reading is a results component.",
         "instruction": "",
-        "_isVisibleBeforeCompletion": true,
-        "_setCompletionOn": "inview",
-        "_pageLevelProgress": {
-            "_isEnabled": true
-        },
         "_assessmentId": "Assessment 1",
+        "_isVisibleBeforeCompletion": true,
+        "_comment": "setCompletionOn = inview | pass",
+        "_setCompletionOn": "inview",
+        "_comment": "_resetType = inherit | hard | soft",
+        "_resetType": "inherit",
         "_retry": {
             "button": "Retry Assessment",
             "feedback": "Why not have another try? You have used {{attemptsSpent}} of {{attempts}} attempt(s), which means you have {{attemptsLeft}} attempt(s) remaining.",
@@ -45,7 +44,10 @@
                 "_allowRetry": false,
                 "_classes": "high-score"
             }
-        ]
+        ],
+        "_pageLevelProgress": {
+            "_isEnabled": true
+        }
     }
 
 /*

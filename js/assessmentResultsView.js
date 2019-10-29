@@ -20,11 +20,10 @@ define([
         'change:_feedbackBand': this.addClassesToArticle,
         'change:body': this.render
       });
-
-      this.model.checkIfAssessmentComplete();
     },
 
     postRender: function() {
+      this.model.checkIfAssessmentComplete();
       this.setReadyStatus();
       this.setupInviewCompletion('.component__inner', this.model.checkCompletion.bind(this.model));
     },

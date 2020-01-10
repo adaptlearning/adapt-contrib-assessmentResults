@@ -1,12 +1,12 @@
 define([
-    'core/js/adapt',
-    './assessmentResultsModel',
-    './assessmentResultsView'
+  'core/js/adapt',
+  './assessmentResultsModel',
+  './assessmentResultsView'
 ], function(Adapt, AssessmentResultsModel, AssessmentResultsView) {
 
-    return Adapt.register("assessmentResults", {
-        model: AssessmentResultsModel,
-        view: AssessmentResultsView
-    });
+  return Adapt.register("assessmentResults", {
+    model: AssessmentResultsModel,
+    view: AssessmentResultsView
+  });
 
 });

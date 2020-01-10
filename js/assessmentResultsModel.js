@@ -25,8 +25,8 @@ define([
       var assessmentModel = Adapt.assessment.get(this.get('_assessmentId'));
       if (!assessmentModel || assessmentModel.length === 0) return;
 
-      var state = assessmentModel.getState();
-      if (state.isComplete) {
+      var isResetOnRevisit = assessmentModel.get('_assessment')._isResetOnRevisit;
+      if (state.isComplete && (!state.allowResetIfPassed || !isResetOnRevisit)) {
         this.onAssessmentComplete(state);
         return;
       }

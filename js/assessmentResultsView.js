@@ -38,7 +38,9 @@ define([
       Adapt.assessment.get(state.id).reset();
 
       if (this.model.get('_retry')._routeToAssessment === true) {
-        Adapt.navigateToElement('.' + state.articleId);
+        _.delay(function() {
+          Adapt.navigateToElement('.' + state.articleId);
+        },600)
       }
     },
 

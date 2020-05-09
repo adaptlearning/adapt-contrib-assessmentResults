@@ -18,10 +18,7 @@ define([
 
       this.listenTo(this.model, {
         'change:_feedbackBand': this.addClassesToArticle,
-        'change:body': () => {
-          if (!this.model.get('_isReady')) return;
-          this.render();
-        }
+        'change:body': this.render
       });
     },
 

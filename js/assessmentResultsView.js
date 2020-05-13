@@ -12,7 +12,7 @@ define([
     preRender: function () {
       this.model.setLocking('_isVisible', false);
 
-      this.listenTo(Adapt, 'preRemove', function () {
+      this.listenTo(Adapt.parentView, 'preRemove', function () {
         this.model.unsetLocking('_isVisible');
       });
 

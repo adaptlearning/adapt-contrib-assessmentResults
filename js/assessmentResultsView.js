@@ -35,11 +35,15 @@ define([
     onRetryClicked: function() {
       var state = this.model.get('_state');
 
-      Adapt.assessment.get(state.id).reset();
-
-      if (this.model.get('_retry')._routeToAssessment === true) {
-        Adapt.navigateToElement('.' + state.articleId);
-      }
+      Adapt.assessment.get(state.id).reset(null, function(wasReset) {
+        if (!wasReset) {
+          return;
+        }
+        if (this.model.get('_retry')._routeToAssessment === true) {
+          Adapt.navigateToElement('.' + state.articleId);
+        }
+      }.bind(this));
+      
     },
 
     /**

@@ -3,13 +3,15 @@ define([
   'core/js/views/componentView'
 ], function(Adapt, ComponentView) {
 
-  var AssessmentResultsView = ComponentView.extend({
+  class AssessmentResultsView extends ComponentView {
 
-    events: {
-      'click .js-assessment-retry-btn': 'onRetryClicked'
-    },
+    events() {
+      return {
+        'click .js-assessment-retry-btn': 'onRetryClicked'
+      }
+    }
 
-    preRender: function () {
+    preRender() {
       this.model.setLocking('_isVisible', false);
 
       this.listenTo(Adapt.parentView, 'preRemove', function () {
@@ -20,45 +22,44 @@ define([
         'change:_feedbackBand': this.addClassesToArticle,
         'change:body': this.render
       });
-    },
+    }
 
-    postRender: function() {
+    postRender() {
       this.model.checkIfAssessmentComplete();
       this.setReadyStatus();
       this.setupInviewCompletion('.component__inner', this.model.checkCompletion.bind(this.model));
-    },
+    }
 
     /**
      * Resets the state of the assessment and optionally redirects the user
      * back to the assessment for another attempt.
      */
-    onRetryClicked: function() {
-      var state = this.model.get('_state');
+    onRetryClicked() {
+      const state = this.model.get('_state');
 
-      Adapt.assessment.get(state.id).reset(null, function(wasReset) {
+      Adapt.assessment.get(state.id).reset(null, wasReset => {
         if (!wasReset) {
           return;
         }
         if (this.model.get('_retry')._routeToAssessment === true) {
           Adapt.navigateToElement('.' + state.articleId);
         }
-      }.bind(this));
-      
-    },
+      });
+    }
 
     /**
      * If there are classes specified for the feedback band, apply them to the containing article
      * This allows for custom styling based on the band the user's score falls into
      */
-    addClassesToArticle: function(model, value) {
+    addClassesToArticle(model, value) {
       if (!value || !value._classes) return;
 
       this.$el.parents('.article').addClass(value._classes);
     }
 
-  }, {
-    template: 'assessmentResults'
-  });
+  }
+
+  AssessmentResultsView.template = 'assessmentResults';
 
   return AssessmentResultsView;
 

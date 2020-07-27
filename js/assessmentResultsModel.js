@@ -3,39 +3,41 @@ define([
   'core/js/models/componentModel'
 ], function(Adapt, ComponentModel) {
 
-  var AssessmentResultsModel = ComponentModel.extend({
+  class AssessmentResultsModel extends ComponentModel {
 
-    init: function() {
+    init(...args) {
       this.set('originalBody', this.get('body'));// save the original body text so we can restore it when the assessment is reset
 
       this.listenTo(Adapt, {
         'assessments:complete': this.onAssessmentComplete,
         'assessments:reset': this.onAssessmentReset
       });
-    },
+
+      super.init(...args);
+    }
 
     /**
      * Checks to see if the assessment was completed in a previous session or not
      */
-    checkIfAssessmentComplete: function() {
+    checkIfAssessmentComplete() {
       if (!Adapt.assessment || this.get('_assessmentId') === undefined) {
         return;
       }
 
-      var assessmentModel = Adapt.assessment.get(this.get('_assessmentId'));
+      const assessmentModel = Adapt.assessment.get(this.get('_assessmentId'));
       if (!assessmentModel || assessmentModel.length === 0) return;
 
-      var state = assessmentModel.getState();
-      var isResetOnRevisit = assessmentModel.get('_assessment')._isResetOnRevisit;
+      const state = assessmentModel.getState();
+      const isResetOnRevisit = assessmentModel.get('_assessment')._isResetOnRevisit;
       if (state.isComplete && (!state.allowResetIfPassed || !isResetOnRevisit)) {
         this.onAssessmentComplete(state);
         return;
       }
 
       this.setVisibility();
-    },
+    }
 
-    onAssessmentComplete: function(state) {
+    onAssessmentComplete(state) {
       if (this.get('_assessmentId') === undefined ||
           this.get('_assessmentId') != state.id) return;
 
@@ -61,102 +63,102 @@ define([
       this.setFeedbackText();
 
       this.toggleVisibility(true);
-    },
+    }
 
-    setFeedbackBand: function(state) {
-      var scoreProp = state.isPercentageBased ? 'scoreAsPercent' : 'score';
-      var bands = _.sortBy(this.get('_bands'), '_score');
+    setFeedbackBand(state) {
+      const scoreProp = state.isPercentageBased ? 'scoreAsPercent' : 'score';
+      const bands = _.sortBy(this.get('_bands'), '_score');
 
-      for (var i = (bands.length - 1); i >= 0; i--) {
-        var isScoreInBandRange =  (state[scoreProp] >= bands[i]._score);
+      for (let i = (bands.length - 1); i >= 0; i--) {
+        const isScoreInBandRange =  (state[scoreProp] >= bands[i]._score);
         if (!isScoreInBandRange) continue;
 
         this.set('_feedbackBand', bands[i]);
         break;
       }
-    },
+    }
 
-    checkRetryEnabled: function(state) {
-      var assessmentModel = Adapt.assessment.get(state.id);
+    checkRetryEnabled(state) {
+      const assessmentModel = Adapt.assessment.get(state.id);
       if (!assessmentModel.canResetInPage()) return false;
 
-      var feedbackBand = this.get('_feedbackBand');
-      var isRetryEnabled = (feedbackBand && feedbackBand._allowRetry) !== false;
-      var isAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === 'infinite');
-      var showRetry = isRetryEnabled && isAttemptsLeft && (!state.isPass || state.allowResetIfPassed);
+      const feedbackBand = this.get('_feedbackBand');
+      const isRetryEnabled = (feedbackBand && feedbackBand._allowRetry) !== false;
+      const isAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === 'infinite');
+      const showRetry = isRetryEnabled && isAttemptsLeft && (!state.isPass || state.allowResetIfPassed);
 
       this.set({
         _isRetryEnabled: showRetry,
         retryFeedback: showRetry ? this.get('_retry').feedback : ''
       });
-    },
+    }
 
-    setFeedbackText: function() {
-      var feedbackBand = this.get('_feedbackBand');
+    setFeedbackText() {
+      const feedbackBand = this.get('_feedbackBand');
 
       // ensure any handlebars expressions in the .feedback are handled...
-      var feedback = feedbackBand ? Handlebars.compile(feedbackBand.feedback)(this.toJSON()) : '';
+      const feedback = feedbackBand ? Handlebars.compile(feedbackBand.feedback)(this.toJSON()) : '';
 
       this.set({
-        feedback: feedback,
+        feedback,
         body: this.get('_completionBody')
       });
-    },
+    }
 
-    setVisibility: function() {
+    setVisibility() {
       if (!Adapt.assessment) return;
 
-      var isVisibleBeforeCompletion = this.get('_isVisibleBeforeCompletion') || false;
-      var wasVisible = this.get('_isVisible');
+      const isVisibleBeforeCompletion = this.get('_isVisibleBeforeCompletion') || false;
+      const wasVisible = this.get('_isVisible');
 
-      var assessmentModel = Adapt.assessment.get(this.get('_assessmentId'));
+      const assessmentModel = Adapt.assessment.get(this.get('_assessmentId'));
       if (!assessmentModel || assessmentModel.length === 0) return;
 
-      var state = assessmentModel.getState();
-      var isComplete = state.isComplete;
-      var isAttemptInProgress = state.attemptInProgress;
-      var attemptsSpent = state.attemptsSpent;
-      var hasHadAttempt = (!isAttemptInProgress && attemptsSpent > 0);
+      const state = assessmentModel.getState();
+      const isComplete = state.isComplete;
+      const isAttemptInProgress = state.attemptInProgress;
+      const attemptsSpent = state.attemptsSpent;
+      const hasHadAttempt = (!isAttemptInProgress && attemptsSpent > 0);
 
-      var isVisible = (isVisibleBeforeCompletion && !isComplete) || hasHadAttempt;
+      const isVisible = (isVisibleBeforeCompletion && !isComplete) || hasHadAttempt;
 
       if (!wasVisible && isVisible) isVisible = false;
 
       this.toggleVisibility(isVisible);
-    },
+    }
 
-    toggleVisibility: function (isVisible) {
+    toggleVisibility (isVisible) {
       if (isVisible === undefined) {
         isVisible = !this.get('_isVisible');
       }
 
-      this.set('_isVisible', isVisible, {pluginName: 'assessmentResults'});
-    },
+      this.set('_isVisible', isVisible, { pluginName: 'assessmentResults' });
+    }
 
-    checkCompletion: function() {
+    checkCompletion() {
       if (this.get('_setCompletionOn') === 'pass' && !this.get('isPass')) {
         return;
       }
 
       this.setCompletionStatus();
-    },
+    }
 
     /**
      * Handles resetting the component whenever its corresponding assessment is reset
      * The component can either inherit the assessment's reset type or define its own
      */
-    onAssessmentReset: function(state) {
+    onAssessmentReset(state) {
       if (this.get('_assessmentId') === undefined ||
           this.get('_assessmentId') != state.id) return;
 
-      var resetType = this.get('_resetType');
+      let resetType = this.get('_resetType');
       if (!resetType || resetType === 'inherit') {
         resetType = state.resetType || 'hard';// backwards compatibility - state.resetType was only added in assessment v2.3.0
       }
       this.reset(resetType, true);
-    },
+    }
 
-    reset: function() {
+    reset(...args) {
       this.set({
         body: this.get('originalBody'),
         state: null,
@@ -166,9 +168,9 @@ define([
         _isRetryEnabled: false
       });
 
-      ComponentModel.prototype.reset.apply(this, arguments);
+      super.reset(...args);
     }
-  });
+  }
 
   return AssessmentResultsModel;
 

@@ -117,12 +117,7 @@
                 "type": "number",
                 "title": "Score",
                 "description": "Enter a value representing the raw score or percentage for the start of the range.",
-                "default": 0,
-                "_backboneForms": {
-                  "validators": [
-                    "number"
-                  ]
-                }
+                "default": 0
               },
               "feedback": {
                 "type": "string",

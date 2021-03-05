@@ -24,7 +24,6 @@
         "instruction": {
           "type": "string",
           "title": "Instruction",
-          "description": "This is the instruction text",
           "default": "",
           "_adapt": {
             "translatable": true
@@ -38,8 +37,8 @@
         },
         "_setCompletionOn": {
           "type": "string",
-          "title": "Set completion on:",
-          "description": "Set to 'pass' to have the component mark as completed only if the learner passed the associated assessment.",
+          "title": "Completion criterion",
+          "description": "Set to 'pass' to have the component mark as completed only if the learner passed the associated assessment",
           "default": "inview",
           "enum": [
             "inview",
@@ -49,8 +48,8 @@
         },
         "_resetType": {
           "type": "string",
-          "title": "Reset type:",
-          "description": "Set to 'inherit' to use the same reset type as the assessment. Set to 'hard' to have the component's completion reset when the assessment is reset, set to 'soft' if you don't want completion to be reset.",
+          "title": "Reset type",
+          "description": "Set to 'inherit' to use the same reset type as the assessment. Set to 'hard' to have the component's completion reset when the assessment is reset, set to 'soft' if you don't want completion to be reset",
           "default": "inherit",
           "enum": [
             "inherit",
@@ -61,8 +60,8 @@
         },
         "_assessmentId": {
           "type": "string",
-          "title": "Assessment Name",
-          "description": "This is the unique name of the assessment for which results should be displayed. If you only have one assessment you can leave this blank.",
+          "title": "Linked assessment ID",
+          "description": "This is the unique name of the assessment for which results should be displayed. If you only have one assessment you can leave this blank",
           "default": ""
         },
         "_retry": {
@@ -72,8 +71,7 @@
           "properties": {
             "button": {
               "type": "string",
-              "title": "Retry Button Text",
-              "description": "Text that appears on the retry button.",
+              "title": "Retry button text",
               "default": "Retry Assessment",
               "_adapt": {
                 "translatable": true
@@ -81,8 +79,8 @@
             },
             "feedback": {
               "type": "string",
-              "title": "Retry Text",
-              "description": "This text is displayed only when more attempts remain. You can use the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}.",
+              "title": "Retry feedback",
+              "description": "This text is displayed only when more attempts remain. You can use the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}",
               "default": "",
               "_adapt": {
                 "translatable": true
@@ -92,15 +90,15 @@
             "_routeToAssessment": {
               "type": "boolean",
               "title": "Redirect to assessment on retry",
-              "description": "When enabled, this will take the user back to the assessment when the \"Retry Assessment\" button is clicked.",
+              "description": "When enabled, this will take the user back to the assessment when the \"Retry Assessment\" button is clicked",
               "default": false
             }
           }
         },
         "_completionBody": {
           "type": "string",
-          "title": "Feedback Text",
-          "description": "This text overwrites the standard body attribute upon completion of the assessment. It may make use of the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}. {{{feedback}}}, representing the feedback assigned to the appropriate band, is also allowed.",
+          "title": "Default feedback",
+          "description": "This text overwrites the standard body attribute upon completion of the assessment. It may make use of the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}. {{{feedback}}}, representing the feedback assigned to the appropriate band, is also allowed",
           "default": "",
           "_adapt": {
             "translatable": true
@@ -109,20 +107,20 @@
         },
         "_bands": {
           "type": "array",
-          "title": "Bands",
+          "title": "Feedback bands",
           "items": {
             "type": "object",
             "properties": {
               "_score": {
                 "type": "number",
-                "title": "Score",
-                "description": "Enter a value representing the raw score or percentage for the start of the range.",
+                "title": "Minimum score",
+                "description": "Enter a value representing the raw score or percentage for the start of the range",
                 "default": 0
               },
               "feedback": {
                 "type": "string",
                 "title": "Feedback",
-                "description": "This text will be displayed to the learner when the learner's score falls within this band's range.",
+                "description": "This text will be displayed to the learner when the learner's score falls within this band's range",
                 "default": "",
                 "_adapt": {
                   "translatable": true
@@ -131,14 +129,14 @@
               },
               "_allowRetry": {
                 "type": "boolean",
-                "title": "Allow Retry",
-                "description": "Determines whether the learner will be allowed to re-attempt the assessment. If not set, the learner will not be allowed to retry the assessment regardless of any remaining attempts.",
+                "title": "Allow retry",
+                "description": "Determines whether the learner will be allowed to re-attempt the assessment. If not set, the learner will not be allowed to retry the assessment regardless of any remaining attempts",
                 "default": true
               },
               "_classes": {
                 "type": "string",
-                "title": "Classes",
-                "description": "Classes to be applied to the containing article. Allows for custom styling based on the band the learner's score falls into.",
+                "title": "Custom article classes",
+                "description": "Classes to be applied to the containing article. Allows for custom styling based on the band the learner's score falls into",
                 "default": ""
               }
             }

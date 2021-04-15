@@ -32,7 +32,7 @@
         "_isVisibleBeforeCompletion": {
           "type": "boolean",
           "title": "Show before assessment completion",
-          "description": "Controls whether this component will be visible or hidden prior to the assessment having been completed.",
+          "description": "Controls whether this component will be visible or hidden prior to the assessment having been completed",
           "default": true
         },
         "_setCompletionOn": {

@@ -120,9 +120,9 @@ define([
       const attemptsSpent = state.attemptsSpent;
       const hasHadAttempt = (!isAttemptInProgress && attemptsSpent > 0);
 
-      const isVisible = (isVisibleBeforeCompletion && !isComplete) || hasHadAttempt;
+      let isVisible = (isVisibleBeforeCompletion && !isComplete) || hasHadAttempt;
 
-      if (!wasVisible && isVisible) isVisible = false;
+      if (!wasVisible && isVisible && !(this._parentModel.get('_trickle')._isEnabled)) isVisible = false;
 
       this.toggleVisibility(isVisible);
     }

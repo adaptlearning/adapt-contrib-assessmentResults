@@ -39,13 +39,13 @@ define([
 
     onAssessmentComplete(state) {
       if (this.get('_assessmentId') === undefined ||
-          this.get('_assessmentId') != state.id) return;
+        this.get('_assessmentId') !== state.id) return;
 
       /*
       make shortcuts to some of the key properties in the state object so that
       content developers can just use {{attemptsLeft}} in json instead of {{state.attemptsLeft}}
       */
-      this.set( {
+      this.set({
         _state: state,
         attempts: state.attempts,
         attemptsSpent: state.attemptsSpent,
@@ -70,7 +70,7 @@ define([
       const bands = _.sortBy(this.get('_bands'), '_score');
 
       for (let i = (bands.length - 1); i >= 0; i--) {
-        const isScoreInBandRange =  (state[scoreProp] >= bands[i]._score);
+        const isScoreInBandRange = (state[scoreProp] >= bands[i]._score);
         if (!isScoreInBandRange) continue;
 
         this.set('_feedbackBand', bands[i]);
@@ -127,7 +127,7 @@ define([
       this.toggleVisibility(isVisible);
     }
 
-    toggleVisibility (isVisible) {
+    toggleVisibility(isVisible) {
       if (isVisible === undefined) {
         isVisible = !this.get('_isVisible');
       }
@@ -149,7 +149,7 @@ define([
      */
     onAssessmentReset(state) {
       if (this.get('_assessmentId') === undefined ||
-          this.get('_assessmentId') != state.id) return;
+        this.get('_assessmentId') !== state.id) return;
 
       let resetType = this.get('_resetType');
       if (!resetType || resetType === 'inherit') {

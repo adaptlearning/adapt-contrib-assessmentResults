@@ -8,7 +8,7 @@ define([
     events() {
       return {
         'click .js-assessment-retry-btn': 'onRetryClicked'
-      }
+      };
     }
 
     preRender() {

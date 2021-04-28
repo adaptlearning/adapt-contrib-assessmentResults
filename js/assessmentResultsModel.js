@@ -122,7 +122,7 @@ define([
 
       let isVisible = (isVisibleBeforeCompletion && !isComplete) || hasHadAttempt;
 
-      if (!wasVisible && isVisible && !(this._parentModel.get('_trickle')._isEnabled)) isVisible = false;
+      if (!wasVisible && isVisible && !state.allowResetIfPassed) isVisible = false;
 
       this.toggleVisibility(isVisible);
     }

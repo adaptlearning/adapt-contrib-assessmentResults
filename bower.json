@@ -5,6 +5,7 @@
   "homepage": "https://github.com/adaptlearning/adapt-contrib-assessmentResults",
   "issues": "https://github.com/adaptlearning/adapt_framework/issues/new",
   "component" : "assessmentResults",
+  "targetAttribute": "_assessmentResults",
   "displayName" : "Assessment Results",
   "description": "A component used to display a single assessment's results",
   "main": "/js/adapt-contrib-assessmentResults.js",

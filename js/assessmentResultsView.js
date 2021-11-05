@@ -16,7 +16,7 @@ export default class AssessmentResultsView extends ComponentView {
   preRender() {
     this.model.setLocking('_isVisible', false);
 
-    this.listenTo(Adapt.parentView, 'preRemove', function () {
+    this.listenTo(Adapt.parentView, 'preRemove', () => {
       this.model.unsetLocking('_isVisible');
     });
 

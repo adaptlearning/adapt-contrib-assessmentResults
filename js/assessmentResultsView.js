@@ -1,11 +1,7 @@
 import Adapt from 'core/js/adapt';
 import ComponentView from 'core/js/views/componentView';
 
-export default class AssessmentResultsView extends ComponentView {
-
-  get template() {
-    return 'assessmentResults';
-  }
+class AssessmentResultsView extends ComponentView {
 
   events() {
     return {
@@ -42,9 +38,8 @@ export default class AssessmentResultsView extends ComponentView {
     Adapt.assessment.get(state.id).reset(null, wasReset => {
       if (!wasReset) return;
 
-      if (this.model.get('_retry')._routeToAssessment === true) {
-        Adapt.navigateToElement('.' + state.articleId);
-      }
+      if (this.model.get('_retry')._routeToAssessment !== true) return;
+      Adapt.navigateToElement(`.${state.articleId}`);
     });
   }
 
@@ -53,9 +48,13 @@ export default class AssessmentResultsView extends ComponentView {
    * This allows for custom styling based on the band the user's score falls into
    */
   addClassesToArticle(model, value) {
-    if (!value || !value._classes) return;
+    if (!value?._classes) return;
 
     this.$el.parents('.article').addClass(value._classes);
   }
 
 }
+
+AssessmentResultsView.template = 'assessmentResults';
+
+export default AssessmentResultsView;

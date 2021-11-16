@@ -1,12 +1,8 @@
-define([
-  'core/js/adapt',
-  './assessmentResultsModel',
-  './assessmentResultsView'
-], function(Adapt, AssessmentResultsModel, AssessmentResultsView) {
+import Adapt from 'core/js/adapt';
+import AssessmentResultsModel from './assessmentResultsModel';
+import AssessmentResultsView from './assessmentResultsView';
 
-  return Adapt.register("assessmentResults", {
-    model: AssessmentResultsModel,
-    view: AssessmentResultsView
-  });
-
+export default Adapt.register('assessmentResults', {
+  model: AssessmentResultsModel,
+  view: AssessmentResultsView
 });

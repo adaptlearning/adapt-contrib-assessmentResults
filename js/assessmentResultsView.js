@@ -33,8 +33,7 @@ class AssessmentResultsView extends ComponentView {
    * back to the assessment for another attempt.
    */
   onRetryClicked() {
-    const state = this.model.get('_state');
-
+    const state = this.model._state;
     Adapt.assessment.get(state.id).reset(null, wasReset => {
       if (!wasReset) return;
 

@@ -44,8 +44,8 @@ export default class AssessmentResultsModel extends ComponentModel {
     make shortcuts to some of the key properties in the state object so that
     content developers can just use {{attemptsLeft}} in json instead of {{state.attemptsLeft}}
     */
+    this._state = state;
     this.set({
-      _state: state,
       attempts: state.attempts,
       attemptsSpent: state.attemptsSpent,
       attemptsLeft: state.attemptsLeft,

@@ -1,4 +1,5 @@
 import Adapt from 'core/js/adapt';
+import router from 'core/js/router';
 import ComponentView from 'core/js/views/componentView';
 
 class AssessmentResultsView extends ComponentView {
@@ -38,7 +39,7 @@ class AssessmentResultsView extends ComponentView {
       if (!wasReset) return;
 
       if (this.model.get('_retry')._routeToAssessment !== true) return;
-      Adapt.navigateToElement(`.${state.articleId}`);
+      router.navigateToElement(`.${state.articleId}`);
     });
   }
 

@@ -55,6 +55,6 @@ class AssessmentResultsView extends ComponentView {
 
 }
 
-AssessmentResultsView.template = 'assessmentResults';
+AssessmentResultsView.template = 'assessmentResults.jsx';
 
 export default AssessmentResultsView;

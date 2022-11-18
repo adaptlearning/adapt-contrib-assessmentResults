@@ -11,6 +11,14 @@
       "inputType": "Text",
       "validators": [],
       "translatable": true
+    },
+    "retryText": {
+      "type": "string",
+      "required": true,
+      "default": "Retry",
+      "inputType": "Text",
+      "validators": [],
+      "translatable": true
     }
   },
   "properties": {

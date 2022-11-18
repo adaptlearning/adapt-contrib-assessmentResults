@@ -30,7 +30,7 @@ export default function AssessmentResults (props) {
 
               <button className="btn-text assessmentresults__retry-btn js-assessment-retry-btn">
                 <span>
-                  {_retry.button ? _retry.button : _globals._components._assessmentResults.retryText}
+                  {_retry.button || _globals._components._assessmentResults.retryText}
                 </span>
               </button>
 

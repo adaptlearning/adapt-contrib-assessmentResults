@@ -22,9 +22,7 @@ export default function AssessmentResults (props) {
 
               {retryFeedback &&
                 <div className="assessmentresults__retry-feedback">
-                  <div className="assessmentresults__retry-feedback-inner">
-                    {compile(retryFeedback, props)}
-                  </div>
+                  <div className="assessmentresults__retry-feedback-inner" dangerouslySetInnerHTML={compile(retryFeedback, props)} />
                 </div>
               }
 

@@ -12,16 +12,23 @@
           "type": "object",
           "default": {},
           "properties": {
-            "_assessmentResults": {
+            "_components": {
               "type": "object",
               "default": {},
               "properties": {
-                "ariaRegion": {
-                  "type": "string",
-                  "title": "ARIA region",
-                  "default": "Assessment results.",
-                  "_adapt": {
-                    "translatable": true
+                "_assessmentResults": {
+                  "type": "object",
+                  "title": "Assessment Results",
+                  "default": {},
+                  "properties": {
+                    "ariaRegion": {
+                      "type": "string",
+                      "title": "ARIA region",
+                      "default": "Assessment results.",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    }
                   }
                 }
               }

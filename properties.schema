@@ -121,7 +121,7 @@
     "_completionBody": {
       "type": "string",
       "required": false,
-      "default": "",
+      "default": "This component you're reading is a results component.<br>You have finished the assessment.<br>You scored {{{score}}} out of {{{maxScore}}}. {{{feedback}}}",
       "title": "Feedback Text",
       "inputType": "TextArea",
       "validators": [],

@@ -68,6 +68,8 @@ guide the learner’s interaction with the component.
 
 >**feedback** (string): This text will be displayed to the learner when the learner's score falls within this band's range. It replaces the `{{{feedback}}}` variable when the variable is used within **\_completionBody**.
 
+>**feedbackNotFinal** (string): This attribute is similar to `feedback`. However, it will be displayed to the learner instead of the `feedback` text if there are remaining attempts. This attribute is _optional_ and the `feedback` text will be shown if `feedbackNotFinal` is not set.
+
 >**\_allowRetry** (boolean): Determines whether the learner will be allowed to reattempt the assessment. If the value is `false`, the learner will not be allowed to retry the assessment regardless of any remaining attempts.
 
 >**\_classes** (string): Classes that will be applied to the containing article if the user's score falls into this band. Allows for custom styling based on the feedback band.
@@ -92,7 +94,7 @@ No known limitations.
 
 ----------------------------
 <a href="https://community.adaptlearning.org/" target="_blank"><img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/adapt-logo-mrgn-lft.jpg" alt="adapt learning logo" align="right"></a>
-**Author / maintainer:** Adapt Core Team with [contributors](https://github.com/adaptlearning/adapt-contrib-assessmentResults/graphs/contributors)
-**Accessibility support:** WAI AA
-**RTL support:** Yes
-**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, IE11, Safari 12+13 for macOS/iOS/iPadOS, Opera
+**Author / maintainer:** Adapt Core Team with [contributors](https://github.com/adaptlearning/adapt-contrib-assessmentResults/graphs/contributors)<br>
+**Accessibility support:** WAI AA<br>
+**RTL support:** Yes<br>
+**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, IE11, Safari 12+13 for macOS/iOS/iPadOS, Opera<br>

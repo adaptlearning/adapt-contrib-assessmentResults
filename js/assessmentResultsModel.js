@@ -56,13 +56,9 @@ export default class AssessmentResultsModel extends ComponentModel {
     });
 
     this.setFeedbackBand(state);
-
     this.setIsAttemptsLeft(state);
-
     this.checkRetryEnabled(state);
-
     this.setFeedbackText();
-
     this.toggleVisibility(true);
   }
 

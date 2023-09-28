@@ -68,7 +68,7 @@ guide the learner’s interaction with the component.
 
 >**feedback** (string): This text will be displayed to the learner when the learner's score falls within this band's range. It replaces the `{{{feedback}}}` variable when the variable is used within **\_completionBody**.
 
->**feedbackNotFinal** (string): This attribute is similar to `feedback`. However, it will be displayed to the learner instead of the `feedback` text if there are remaining attempts. This attribute is _optional_ and the `feedback` text will be shown if `feedbackNotFinal` is not set.
+>**feedbackNotFinal** (string): This attribute is similar to `feedback`. However, it will be displayed to the learner instead of the `feedback` text if there are remaining attempts. This attribute is _optional_ and the `feedback` text will be shown if `feedbackNotFinal` is not set. This attribute is not used if the learner passed the assessment.
 
 >**\_allowRetry** (boolean): Determines whether the learner will be allowed to reattempt the assessment. If the value is `false`, the learner will not be allowed to retry the assessment regardless of any remaining attempts.
 

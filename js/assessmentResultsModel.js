@@ -57,6 +57,8 @@ export default class AssessmentResultsModel extends ComponentModel {
 
     this.setFeedbackBand(state);
 
+    this.setIsAttemptsLeft(state);
+
     this.checkRetryEnabled(state);
 
     this.setFeedbackText();
@@ -77,14 +79,18 @@ export default class AssessmentResultsModel extends ComponentModel {
     }
   }
 
+  setIsAttemptsLeft(state) {
+    const isAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === 'infinite');
+    this.set('isAttemptsLeft', isAttemptsLeft);
+  }
+
   checkRetryEnabled(state) {
     const assessmentModel = Adapt.assessment.get(state.id);
     if (!assessmentModel.canResetInPage()) return false;
 
     const feedbackBand = this.get('_feedbackBand');
     const isRetryEnabled = (feedbackBand && feedbackBand._allowRetry) !== false;
-    const isAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === 'infinite');
-    const showRetry = isRetryEnabled && isAttemptsLeft && (!state.isPass || state.allowResetIfPassed);
+    const showRetry = isRetryEnabled && this.get('isAttemptsLeft') && (!state.isPass || state.allowResetIfPassed);
 
     this.set({
       _isRetryEnabled: showRetry,
@@ -94,12 +100,18 @@ export default class AssessmentResultsModel extends ComponentModel {
 
   setFeedbackText() {
     const feedbackBand = this.get('_feedbackBand');
+    let feedback = '';
 
-    // ensure any handlebars expressions in the .feedback are handled...
-    const feedback = feedbackBand ? Handlebars.compile(feedbackBand.feedback)(this.toJSON()) : '';
+    if (feedbackBand) {
+      feedback = feedbackBand.feedback;
+    }
+
+    if (this.get('isAttemptsLeft') && feedbackBand?.feedbackNotFinal) {
+      feedback = feedbackBand.feedbackNotFinal;
+    }
 
     this.set({
-      feedback,
+      feedback: Handlebars.compile(feedback)(this.toJSON()),
       body: this.get('_completionBody')
     });
   }
@@ -155,6 +167,8 @@ export default class AssessmentResultsModel extends ComponentModel {
     this.set({
       body: this.get('originalBody'),
       state: null,
+      isAttemptsLeft: true,
+      feedbackNotFinal: '',
       feedback: '',
       _feedbackBand: null,
       retryFeedback: '',

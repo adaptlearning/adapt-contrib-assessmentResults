@@ -98,17 +98,20 @@ export default class AssessmentResultsModel extends ComponentModel {
     });
   }
 
-  setFeedbackText() {
+  getFeedbackText() {
     const feedbackBand = this.get('_feedbackBand');
-    let feedback = '';
 
-    if (feedbackBand) {
-      feedback = feedbackBand.feedback;
-    }
+    if (!feedbackBand) return '';
 
     if (this.get('isAttemptsLeft') && feedbackBand?.feedbackNotFinal) {
-      feedback = feedbackBand.feedbackNotFinal;
+      return feedbackBand.feedbackNotFinal;
     }
+
+    return feedbackBand.feedback;
+  }
+
+  setFeedbackText() {
+    const feedback = this.getFeedbackText();
 
     this.set({
       feedback: Handlebars.compile(feedback)(this.toJSON()),

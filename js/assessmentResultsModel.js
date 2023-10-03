@@ -56,7 +56,7 @@ export default class AssessmentResultsModel extends ComponentModel {
     });
 
     this.setFeedbackBand(state);
-    this.setIsAttemptsLeft(state);
+    this.setHasAttemptsLeft(state);
     this.checkRetryEnabled(state);
     this.setFeedbackText();
     this.toggleVisibility(true);
@@ -75,9 +75,9 @@ export default class AssessmentResultsModel extends ComponentModel {
     }
   }
 
-  setIsAttemptsLeft(state) {
-    const isAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === 'infinite');
-    this.set('isAttemptsLeft', isAttemptsLeft);
+  setHasAttemptsLeft(state) {
+    const hasAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === 'infinite');
+    this.set('hasAttemptsLeft', hasAttemptsLeft);
   }
 
   checkRetryEnabled(state) {
@@ -86,7 +86,7 @@ export default class AssessmentResultsModel extends ComponentModel {
 
     const feedbackBand = this.get('_feedbackBand');
     const isRetryEnabled = (feedbackBand && feedbackBand._allowRetry) !== false;
-    const showRetry = isRetryEnabled && this.get('isAttemptsLeft') && (!state.isPass || state.allowResetIfPassed);
+    const showRetry = isRetryEnabled && this.get('hasAttemptsLeft') && (!state.isPass || state.allowResetIfPassed);
 
     this.set({
       _isRetryEnabled: showRetry,
@@ -99,7 +99,7 @@ export default class AssessmentResultsModel extends ComponentModel {
 
     if (!feedbackBand) return '';
 
-    if (this.get('isAttemptsLeft') && feedbackBand?.feedbackNotFinal) {
+    if (this.get('hasAttemptsLeft') && feedbackBand?.feedbackNotFinal) {
       return feedbackBand.feedbackNotFinal;
     }
 
@@ -166,7 +166,7 @@ export default class AssessmentResultsModel extends ComponentModel {
     this.set({
       body: this.get('originalBody'),
       state: null,
-      isAttemptsLeft: true,
+      hasAttemptsLeft: true,
       feedbackNotFinal: '',
       feedback: '',
       _feedbackBand: null,

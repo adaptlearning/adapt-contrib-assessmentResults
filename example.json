@@ -25,16 +25,19 @@
         "_bands": [
             {
                 "_score": 0,
+                "feedbackNotFinal": "Sorry, but you didn't pass. Take some time to review the course before giving it another try.",
                 "feedback": "Your score was below 25%.",
                 "_allowRetry": true
             },
             {
                 "_score": 25,
+                "feedbackNotFinal": "Sorry, but you didn't pass. Up for another try?",
                 "feedback": "Your score was below 50%.",
                 "_allowRetry": true
             },
             {
                 "_score": 50,
+                "feedbackNotFinal": "Nice try, but you didn't pass. Want to give it another go?",
                 "feedback": "Good effort, but your score was under 75%.",
                 "_allowRetry": true
             },

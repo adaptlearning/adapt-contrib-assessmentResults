@@ -151,7 +151,18 @@
             "inputType": "TextArea",
             "validators": [],
             "translatable": true,
+            "title": "Feedback",
             "help": "This text will be displayed to the learner when the learner's score falls within this band's range."
+          },
+          "feedbackNotFinal": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "inputType": "TextArea",
+            "validators": [],
+            "translatable": true,
+            "title": "Feedback (not final attempt)",
+            "help": "This optional text will be displayed to the learner when the learner's score falls within this band's range and when the learner still has attempts remaining."
           },
           "_allowRetry": {
             "type": "boolean",

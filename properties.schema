@@ -104,7 +104,7 @@
           "title": "Retry Text",
           "inputType": "TextArea",
           "validators": [],
-          "help": "This text is displayed only when more attempts remain. You can use the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}.",
+          "help": "This text is displayed only when more attempts remain. You can use the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{scoreAsPercent}} and {{{maxScore}}}.",
           "translatable": true
         },
         "_routeToAssessment": {
@@ -125,7 +125,7 @@
       "title": "Feedback Text",
       "inputType": "TextArea",
       "validators": [],
-      "help": "This text overwrites the standard body attribute upon completion of the assessment. It may make use of the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}. {{{feedback}}}, representing the feedback assigned to the appropriate band, is also allowed.",
+      "help": "This text overwrites the standard body attribute upon completion of the assessment. It may make use of the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{scoreAsPercent}} and {{{maxScore}}}. {{{feedback}}}, representing the feedback assigned to the appropriate band, is also allowed.",
       "translatable": true
     },
     "_bands": {

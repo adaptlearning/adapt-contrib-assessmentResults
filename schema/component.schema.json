@@ -80,7 +80,7 @@
             "feedback": {
               "type": "string",
               "title": "Retry feedback",
-              "description": "This text is displayed only when more attempts remain. You can use the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}",
+              "description": "This text is displayed only when more attempts remain. You can use the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{scoreAsPercent}} and {{{maxScore}}}",
               "default": "",
               "_adapt": {
                 "translatable": true
@@ -98,7 +98,7 @@
         "_completionBody": {
           "type": "string",
           "title": "Default feedback",
-          "description": "This text overwrites the standard body attribute upon completion of the assessment. It may make use of the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{{maxScore}}}. {{{feedback}}}, representing the feedback assigned to the appropriate band, is also allowed",
+          "description": "This text overwrites the standard body attribute upon completion of the assessment. It may make use of the following variables: {{attemptsSpent}}, {{attempts}}, {{attemptsLeft}}, {{{score}}}, {{scoreAsPercent}} and {{{maxScore}}}. {{{feedback}}}, representing the feedback assigned to the appropriate band, is also allowed",
           "default": "This component you're reading is a results component.<br>You have finished the assessment.<br>You scored {{{score}}} out of {{{maxScore}}}. {{{feedback}}}",
           "_adapt": {
             "translatable": true

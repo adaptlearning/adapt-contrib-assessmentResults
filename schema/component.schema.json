@@ -61,7 +61,7 @@
         "_assessmentId": {
           "type": "string",
           "title": "Linked assessment ID",
-          "description": "This is the unique name of the assessment for which results should be displayed. If you only have one assessment, you can leave this blank (the article's assessment ID must also be blank)",
+          "description": "This is the unique name of the assessment for which results should be displayed. If you only have one assessment, you can leave this blank (the article's assessment ID must also be blank).",
           "default": ""
         },
         "_retry": {

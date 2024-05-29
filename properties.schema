@@ -80,7 +80,7 @@
       "title": "Linked assessment ID",
       "inputType": "Text",
       "validators": [],
-      "help": "This is the unique name of the assessment for which results should be displayed. If you only have one assessment, you can leave this blank (the article's assessment ID must also be blank)"
+      "help": "This is the unique name of the assessment for which results should be displayed. If you only have one assessment, you can leave this blank (the article's assessment ID must also be blank)."
     },
     "_retry": {
       "type": "object",

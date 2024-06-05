@@ -75,8 +75,13 @@ export default class AssessmentResultsModel extends ComponentModel {
     }
   }
 
+  checkIfInfiniteAttempts(state) {
+    const isInfinite = (state.attempts === 'infinite' || state.attempts === '-1' || state.attempts === '0');
+    return isInfinite;
+  }
+
   setHasAttemptsLeft(state) {
-    const hasAttemptsLeft = (state.attemptsLeft > 0 || state.attemptsLeft === 'infinite');
+    const hasAttemptsLeft = (state.attemptsLeft > 0 || this.checkIfInfiniteAttempts(state));
     this.set('hasAttemptsLeft', hasAttemptsLeft);
   }
 

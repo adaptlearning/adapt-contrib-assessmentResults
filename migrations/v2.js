@@ -7,7 +7,7 @@ describe('adapt-contrib-assessmentResults - v2.0.0 > v2.0.3', async () => {
 
   whereContent('adapt-contrib-assessmentResults - where assessmentResults', async content => {
     assessmentResults = content.filter(({ _component }) => _component === 'assessmentResults');
-    return assessmentResults.length
+    return assessmentResults.length;
   });
 
   /**

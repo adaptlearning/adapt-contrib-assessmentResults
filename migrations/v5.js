@@ -3,7 +3,7 @@ import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, u
 describe('adapt-contrib-assessmentResults - v3.0.0 > v5.2.0', async () => {
   let assessmentResults;
 
-  whereFromPlugin('adapt-contrib-assessmentResults - from v3.0.0', { name: 'adapt-contrib-assessmentResults', version: '<=5.2.0' });
+  whereFromPlugin('adapt-contrib-assessmentResults - from v3.0.0', { name: 'adapt-contrib-assessmentResults', version: '<5.2.0' });
 
   whereContent('adapt-contrib-assessmentResults - where assessmentResultInstance', async content => {
     assessmentResults = content.filter(({ _component }) => _component === 'assessmentResults');
@@ -32,5 +32,5 @@ describe('adapt-contrib-assessmentResults - v3.0.0 > v5.2.0', async () => {
     return true;
   });
 
-  updatePlugin('adapt-contrib-assessmentResults - update to v5.2.0', { name: 'adapt-contrib-assessmentResults', version: '5.2.0', framework: '>=5' });
+  updatePlugin('adapt-contrib-assessmentResults - update to v5.2.0', { name: 'adapt-contrib-assessmentResults', version: '5.2.0', framework: '>=5.19.1' });
 });

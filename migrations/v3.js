@@ -3,7 +3,7 @@ import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, u
 describe('adapt-contrib-assessmentResults - v2.3.0 > v3.0.0', async () => {
   let assessmentResults;
 
-  whereFromPlugin('adapt-contrib-assessmentResults - from v2.3.0', { name: 'adapt-contrib-assessmentResults', version: '<=3.0.0' });
+  whereFromPlugin('adapt-contrib-assessmentResults - from v2.3.0', { name: 'adapt-contrib-assessmentResults', version: '<3.0.0' });
 
   whereContent('adapt-contrib-assessmentResults - where assessmentResult', async content => {
     assessmentResults = content.filter(({ _component }) => _component === 'assessmentResult');
@@ -15,7 +15,7 @@ describe('adapt-contrib-assessmentResults - v2.3.0 > v3.0.0', async () => {
    */
   mutateContent('adapt-contrib-assessmentResults - add assessmentResult._resetType', async () => {
     assessmentResults.forEach(assessmentResult => {
-      assessmentResult._resetType = 'inview';
+      assessmentResult._resetType = 'inherit';
     });
     return true;
   });
@@ -42,5 +42,5 @@ describe('adapt-contrib-assessmentResults - v2.3.0 > v3.0.0', async () => {
     return true;
   });
 
-  updatePlugin('adapt-contrib-assessmentResults - update to v3.0.0', { name: 'adapt-contrib-assessmentResults', version: '3.0.0', framework: '>=3' });
+  updatePlugin('adapt-contrib-assessmentResults - update to v3.0.0', { name: 'adapt-contrib-assessmentResults', version: '3.0.0', framework: '>=3.3.0' });
 });

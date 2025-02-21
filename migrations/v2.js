@@ -1,4 +1,4 @@
-import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
+import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin, getComponents } from 'adapt-migrations';
 
 describe('adapt-contrib-assessmentResults - v2.0.0 > v2.0.3', async () => {
   let assessmentResults;
@@ -6,7 +6,7 @@ describe('adapt-contrib-assessmentResults - v2.0.0 > v2.0.3', async () => {
   whereFromPlugin('adapt-contrib-assessmentResults - from v2.0.0', { name: 'adapt-contrib-assessmentResults', version: '<2.0.3' });
 
   whereContent('adapt-contrib-assessmentResults - where assessmentResults', async content => {
-    assessmentResults = content.filter(({ _component }) => _component === 'assessmentResults');
+    assessmentResults = getComponents('assessmentResults');
     return assessmentResults.length;
   });
 

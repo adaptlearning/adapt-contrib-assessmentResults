@@ -1,4 +1,4 @@
-import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
+import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin, getCourse, getComponents } from 'adapt-migrations';
 
 describe('adapt-contrib-assessmentResults - v3.0.0 > v5.1.2', async () => {
   let course, courseAssessmentResultsGlobals, assessmentResults;
@@ -11,7 +11,7 @@ describe('adapt-contrib-assessmentResults - v3.0.0 > v5.1.2', async () => {
   });
 
   mutateContent('adapt-contrib-assessmentResults - add globals retryText attribute', async (content) => {
-    course = content.find(({ _type }) => _type === 'course');
+    course = getCourse();
     if (!_.has(course, '_globals._components._assessmentResults')) _.set(course, '_globals._components._assessmentResults', {});
     courseAssessmentResultsGlobals = course._globals._components._assessmentResults;
 
@@ -62,7 +62,7 @@ describe('adapt-contrib-assessmentResults - v5.1.7 > v5.2.0', async () => {
   whereFromPlugin('adapt-contrib-assessmentResults - from v5.1.7', { name: 'adapt-contrib-assessmentResults', version: '<5.2.0' });
 
   whereContent('adapt-contrib-assessmentResults - where assessmentResultInstance', async content => {
-    assessmentResults = content.filter(({ _component }) => _component === 'assessmentResults');
+    assessmentResults = getComponents('assessmentResults');
     return assessmentResults.length;
   });
 

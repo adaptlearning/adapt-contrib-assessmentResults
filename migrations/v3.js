@@ -1,4 +1,4 @@
-import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
+import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin, getCourse, getComponents } from 'adapt-migrations';
 
 describe('adapt-contrib-assessmentResults - v2.4.0 > v3.0.0', async () => {
   let course, courseAssessmentResultsGlobals, assessmentResults;
@@ -6,12 +6,12 @@ describe('adapt-contrib-assessmentResults - v2.4.0 > v3.0.0', async () => {
   whereFromPlugin('adapt-contrib-assessmentResults - from v2.4.0', { name: 'adapt-contrib-assessmentResults', version: '<3.0.0' });
 
   whereContent('adapt-contrib-assessmentResults - where assessmentResult', async content => {
-    assessmentResults = content.filter(({ _component }) => _component === 'assessmentResult');
+    assessmentResults = getComponents('assessmentResults');
     return assessmentResults.length;
   });
 
   mutateContent('adapt-contrib-assessmentResults - modify globals ariaRegion attribute', async (content) => {
-    course = content.find(({ _type }) => _type === 'course');
+    course = getCourse();
     if (!_.has(course, '_globals._components._assessmentResults')) _.set(course, '_globals._components._assessmentResults', {});
     courseAssessmentResultsGlobals = course._globals._components._assessmentResults;
 

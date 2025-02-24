@@ -1,12 +1,13 @@
 import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin, getCourse, getComponents } from 'adapt-migrations';
+import _ from 'lodash';
 
-describe('adapt-contrib-assessmentResults - v3.0.0 > v5.1.2', async () => {
+describe('adapt-contrib-assessmentResults - v5.1.1 > v5.1.2', async () => {
   let course, courseAssessmentResultsGlobals, assessmentResults;
 
-  whereFromPlugin('adapt-contrib-assessmentResults - from v3.0.0', { name: 'adapt-contrib-assessmentResults', version: '<5.1.2' });
+  whereFromPlugin('adapt-contrib-assessmentResults - from v5.1.1', { name: 'adapt-contrib-assessmentResults', version: '<5.1.2' });
 
   whereContent('adapt-contrib-assessmentResults - where assessmentResult', async content => {
-    assessmentResults = content.filter(({ _component }) => _component === 'assessmentResult');
+    assessmentResults = getComponents('assessmentResults');
     return assessmentResults.length;
   });
 
@@ -28,38 +29,10 @@ describe('adapt-contrib-assessmentResults - v3.0.0 > v5.1.2', async () => {
   updatePlugin('adapt-contrib-assessmentResults - update to v5.1.2', { name: 'adapt-contrib-assessmentResults', version: '5.1.2', framework: '>=5.19.1' });
 });
 
-describe('adapt-contrib-assessmentResults - v5.1.2 > v5.1.7', async () => {
+describe('adapt-contrib-assessmentResults - v5.1.2 > v5.2.0', async () => {
   let assessmentResults;
 
-  whereFromPlugin('adapt-contrib-assessmentResults - from v5.1.2', { name: 'adapt-contrib-assessmentResults', version: '<5.1.7' });
-
-  whereContent('adapt-contrib-assessmentResults - where assessmentResult', async content => {
-    assessmentResults = content.filter(({ _component }) => _component === 'assessmentResult');
-    return assessmentResults.length;
-  });
-
-  mutateContent('adapt-contrib-assessmentResults - modify assessmentResult._completionBody default', async () => {
-    assessmentResults.forEach(assessmentResult => {
-      if (assessmentResult._completionBody === '') {
-        assessmentResult._completionBody = 'This component you\'re reading is a results component.<br>You have finished the assessment.<br>You scored {{{score}}} out of {{{maxScore}}}. {{{feedback}}}';
-      }
-    });
-    return true;
-  });
-
-  checkContent('adapt-contrib-assessmentResults - check assessmentResult._completionBody atrribute', async () => {
-    const isValid = assessmentResults.every(({ _completionBody }) => _completionBody !== undefined);
-    if (!isValid) throw new Error('adapt-contrib-assessmentResults - _completionBody not modified in every instance of assessmentResult');
-    return true;
-  });
-
-  updatePlugin('adapt-contrib-assessmentResults - update to v5.1.7', { name: 'adapt-contrib-assessmentResults', version: '5.1.7', framework: '>=5.19.1' });
-});
-
-describe('adapt-contrib-assessmentResults - v5.1.7 > v5.2.0', async () => {
-  let assessmentResults;
-
-  whereFromPlugin('adapt-contrib-assessmentResults - from v5.1.7', { name: 'adapt-contrib-assessmentResults', version: '<5.2.0' });
+  whereFromPlugin('adapt-contrib-assessmentResults - from v5.1.2', { name: 'adapt-contrib-assessmentResults', version: '<5.2.0' });
 
   whereContent('adapt-contrib-assessmentResults - where assessmentResultInstance', async content => {
     assessmentResults = getComponents('assessmentResults');
@@ -94,7 +67,7 @@ describe('adapt-contrib-assessmentResults - v5.2.0 > v5.2.1', async () => {
   whereFromPlugin('adapt-contrib-assessmentResults - from v5.2.0', { name: 'adapt-contrib-assessmentResults', version: '<5.2.1' });
 
   whereContent('adapt-contrib-assessmentResults - where assessmentResult', async content => {
-    assessmentResults = content.filter(({ _component }) => _component === 'assessmentResult');
+    assessmentResults = getComponents('assessmentResults');
     return assessmentResults.length;
   });
 

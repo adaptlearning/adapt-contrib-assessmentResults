@@ -1,4 +1,5 @@
 import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin, getCourse, getComponents } from 'adapt-migrations';
+import _ from 'lodash';
 
 describe('adapt-contrib-assessmentResults - v2.4.0 > v3.0.0', async () => {
   let course, courseAssessmentResultsGlobals, assessmentResults;

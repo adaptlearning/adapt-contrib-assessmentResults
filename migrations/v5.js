@@ -56,10 +56,10 @@ describe('adapt-contrib-assessmentResults - v5.1.1 > v5.1.2', async () => {
   });
 });
 
-describe('adapt-contrib-assessmentResults - v5.1.2 > v5.2.0', async () => {
+describe('adapt-contrib-assessmentResults - v5.1.7 > v5.2.0', async () => {
   let assessmentResults;
 
-  whereFromPlugin('adapt-contrib-assessmentResults - from v5.1.2', { name: 'adapt-contrib-assessmentResults', version: '<5.2.0' });
+  whereFromPlugin('adapt-contrib-assessmentResults - from v5.1.7', { name: 'adapt-contrib-assessmentResults', version: '<5.2.0' });
 
   whereContent('adapt-contrib-assessmentResults - where assessmentResultInstance', async content => {
     assessmentResults = getComponents('assessmentResults');
@@ -88,7 +88,7 @@ describe('adapt-contrib-assessmentResults - v5.1.2 > v5.2.0', async () => {
   updatePlugin('adapt-contrib-assessmentResults - update to v5.2.0', { name: 'adapt-contrib-assessmentResults', version: '5.2.0', framework: '>=5.19.1' });
 
   testSuccessWhere('correct version with/without assessmentResults._bands', {
-    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '5.1.1' }],
+    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '5.1.7' }],
     content: [
       { _id: 'c-100', _component: 'assessmentResults', _bands: [ { _score: 0 } ] },
       { _id: 'c-105', _component: 'assessmentResults' }
@@ -96,12 +96,12 @@ describe('adapt-contrib-assessmentResults - v5.1.2 > v5.2.0', async () => {
   });
 
   testStopWhere('no assessmentResults components', {
-    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '5.1.1' }],
+    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '5.1.7' }],
     content: [{ _component: 'other' }]
   });
 
   testStopWhere('incorrect version', {
-    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '5.1.2' }]
+    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '5.2.0' }]
   });
 });
 

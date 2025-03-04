@@ -1,4 +1,5 @@
-import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin, getComponents } from 'adapt-migrations';
+import { describe, whereContent, whereFromPlugin, mutateContent, checkContent, updatePlugin, getComponents, testStopWhere, testSuccessWhere } from 'adapt-migrations';
+import _ from 'lodash';
 
 describe('adapt-contrib-assessmentResults - v2.0.0 > v2.0.3', async () => {
   let assessmentResults;
@@ -24,6 +25,23 @@ describe('adapt-contrib-assessmentResults - v2.0.0 > v2.0.3', async () => {
   });
 
   updatePlugin('adapt-contrib-assessmentResults - update to v2.0.3', { name: 'adapt-contrib-assessmentResults', version: '2.0.3', framework: '>=2.0.0' });
+
+  testSuccessWhere('correct version with empty assessmentResults components', {
+    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '2.0.0' }],
+    content: [
+      { _id: 'c-100', _component: 'assessmentResults' },
+      { _id: 'c-105', _component: 'assessmentResults' }
+    ]
+  });
+
+  testStopWhere('no assessmentResults components', {
+    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '2.0.0' }],
+    content: [{ _component: 'other' }]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '2.0.3' }]
+  });
 });
 
 describe('adapt-contrib-assessmentResults - v2.0.3 > v2.3.0', async () => {
@@ -33,7 +51,7 @@ describe('adapt-contrib-assessmentResults - v2.0.3 > v2.3.0', async () => {
 
   whereContent('adapt-contrib-assessmentResults - where assessmentResult', async content => {
     assessmentResults = getComponents('assessmentResults');
-    if (assessmentResults) return true;
+    return assessmentResults.length;
   });
 
   mutateContent('adapt-contrib-assessmentResults - add assessmentResult._setCompletionOn', async () => {
@@ -50,6 +68,23 @@ describe('adapt-contrib-assessmentResults - v2.0.3 > v2.3.0', async () => {
   });
 
   updatePlugin('adapt-contrib-assessmentResults - update to v2.3.0', { name: 'adapt-contrib-assessmentResults', version: '2.3.0', framework: '>=2.1.0' });
+
+  testSuccessWhere('correct version with empty assessmentResults components', {
+    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '2.0.3' }],
+    content: [
+      { _id: 'c-100', _component: 'assessmentResults' },
+      { _id: 'c-105', _component: 'assessmentResults' }
+    ]
+  });
+
+  testStopWhere('no assessmentResults components', {
+    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '2.0.3' }],
+    content: [{ _component: 'other' }]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '2.3.0' }]
+  });
 });
 
 describe('adapt-contrib-assessmentResults - v2.3.1 > v2.4.0', async () => {
@@ -59,12 +94,19 @@ describe('adapt-contrib-assessmentResults - v2.3.1 > v2.4.0', async () => {
 
   whereContent('adapt-contrib-assessmentResults - where assessmentResult', async content => {
     assessmentResults = getComponents('assessmentResults');
-    if (assessmentResults) return true;
+    return assessmentResults.length;
   });
 
   mutateContent('adapt-contrib-assessmentResults - add assessmentResult._retry._routeToAssessment', async () => {
     assessmentResults.forEach(assessmentResult => {
-      assessmentResult._retry._routeToAssessment = false;
+      _.set(assessmentResult, '_retry._routeToAssessment', false);
+    });
+    return true;
+  });
+
+  mutateContent('adapt-contrib-assessmentResults - add assessmentResult._resetType', async () => {
+    assessmentResults.forEach(assessmentResult => {
+      assessmentResult._resetType = 'inherit';
     });
     return true;
   });
@@ -77,13 +119,6 @@ describe('adapt-contrib-assessmentResults - v2.3.1 > v2.4.0', async () => {
     return true;
   });
 
-  mutateContent('adapt-contrib-assessmentResults - add assessmentResult._resetType', async () => {
-    assessmentResults.forEach(assessmentResult => {
-      assessmentResult._resetType = 'inherit';
-    });
-    return true;
-  });
-
   checkContent('adapt-contrib-assessmentResults - check assessmentResult._resetType atrribute', async () => {
     const isValid = assessmentResults.every(({ _resetType }) => _resetType === 'inherit');
     if (!isValid) throw new Error('adapt-contrib-assessmentResults - _resetType not added to every instance of assessmentResult');
@@ -91,4 +126,29 @@ describe('adapt-contrib-assessmentResults - v2.3.1 > v2.4.0', async () => {
   });
 
   updatePlugin('adapt-contrib-assessmentResults - update to v2.4.0', { name: 'adapt-contrib-assessmentResults', version: '2.4.0', framework: '>=2.1.0' });
+
+  testSuccessWhere('correct version with empty assessmentResults components', {
+    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '2.3.1' }],
+    content: [
+      { _id: 'c-100', _component: 'assessmentResults' },
+      { _id: 'c-105', _component: 'assessmentResults' }
+    ]
+  });
+
+  testSuccessWhere('correct version with/without assessmentResults._retry', {
+    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '2.3.1' }],
+    content: [
+      { _id: 'c-100', _component: 'assessmentResults', retry: {} },
+      { _id: 'c-105', _component: 'assessmentResults' }
+    ]
+  });
+
+  testStopWhere('no assessmentResults components', {
+    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '2.3.1' }],
+    content: [{ _component: 'other' }]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '2.4.0' }]
+  });
 });

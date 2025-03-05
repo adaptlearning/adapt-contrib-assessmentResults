@@ -37,7 +37,7 @@ describe('adapt-contrib-assessmentResults - v5.1.1 > v5.1.2', async () => {
     ]
   });
 
-  testSuccessWhere('correct version with/without assessmentResults._retry and course with globals', {
+  testSuccessWhere('correct version with/without assessmentResults._retry and course with empty globals', {
     fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '5.1.1' }],
     content: [
       { _id: 'c-100', _component: 'assessmentResults' },

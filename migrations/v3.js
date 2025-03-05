@@ -9,11 +9,11 @@ describe('adapt-contrib-assessmentResults - v2.4.0 > v3.0.0', async () => {
 
   whereContent('adapt-contrib-assessmentResults - where assessmentResult', async content => {
     assessmentResults = getComponents('assessmentResults');
+    course = getCourse();
     return assessmentResults.length;
   });
 
-  mutateContent('adapt-contrib-assessmentResults - modify globals ariaRegion attribute', async (content) => {
-    course = getCourse();
+  mutateContent('adapt-contrib-assessmentResults - add globals ariaRegion attribute', async (content) => {
     if (!_.has(course, '_globals._components._assessmentResults')) _.set(course, '_globals._components._assessmentResults', {});
     courseAssessmentResultsGlobals = course._globals._components._assessmentResults;
     courseAssessmentResultsGlobals.ariaRegion = newAriaRegion;
@@ -28,19 +28,21 @@ describe('adapt-contrib-assessmentResults - v2.4.0 > v3.0.0', async () => {
 
   updatePlugin('adapt-contrib-assessmentResults - update to v3.0.0', { name: 'adapt-contrib-assessmentResults', version: '3.0.0', framework: '>=3.3.0' });
 
-  testSuccessWhere('correct version with empty assessmentResults components', {
+  testSuccessWhere('correct version with empty assessmentResults components/course', {
     fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '2.4.0' }],
     content: [
       { _id: 'c-100', _component: 'assessmentResults' },
-      { _id: 'c-105', _component: 'assessmentResults' }
+      { _id: 'c-105', _component: 'assessmentResults' },
+      { _type: 'course' }
     ]
   });
 
-  testSuccessWhere('correct version with/without assessmentResults._retry', {
+  testSuccessWhere('correct version with/without assessmentResults._retry and empty globals', {
     fromPlugins: [{ name: 'adapt-contrib-assessmentResults', version: '2.4.0' }],
     content: [
       { _id: 'c-100', _component: 'assessmentResults', retry: {} },
-      { _id: 'c-105', _component: 'assessmentResults' }
+      { _id: 'c-105', _component: 'assessmentResults' },
+      { _type: 'course', _globals: { _components: { _assessmentResults: {} } } }
     ]
   });
 

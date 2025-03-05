@@ -120,9 +120,8 @@ describe('adapt-contrib-assessmentResults - v5.2.0 > v5.2.1', async () => {
   mutateContent('adapt-contrib-assessmentResults - modify assessmentResult._completionBody default', async () => {
     assessmentResults.forEach(assessmentResult => {
       if (!_.has(assessmentResult, '_completionBody')) return _.set(assessmentResult, '_completionBody', newCompletionBody);
-      if (assessmentResult._completionBody === originalCompletionBody) {
-        assessmentResult._completionBody = newCompletionBody;
-      }
+      if (assessmentResult._completionBody !== originalCompletionBody) return;
+      assessmentResult._completionBody = newCompletionBody;
     });
     return true;
   });

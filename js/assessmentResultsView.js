@@ -35,7 +35,10 @@ class AssessmentResultsView extends ComponentView {
    */
   onRetryClicked() {
     const state = this.model._state;
-    Adapt.assessment.get(state.id).reset(null, wasReset => {
+    // force the reset: an explicit retry click should always reset, even when
+    // the assessment is already complete and not configured to reset on revisit
+    // (e.g. _allowResetIfPassed). see #109
+    Adapt.assessment.get(state.id).reset(true, wasReset => {
       if (!wasReset) return;
 
       if (this.model.get('_retry')._routeToAssessment !== true) return;
